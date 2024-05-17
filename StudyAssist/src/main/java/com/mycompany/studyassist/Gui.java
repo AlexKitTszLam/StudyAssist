@@ -82,68 +82,69 @@ public class Gui extends javax.swing.JFrame {
         display.setRows(5);
         jScrollPane1.setViewportView(display);
 
-        jTextArea2.setColumns(20);
-        jTextArea2.setRows(5);
+        jTextArea2.setColumns(5);
+        jTextArea2.setRows(1);
         courseCodeField.setViewportView(jTextArea2);
 
         jLabel2.setText("Course Code");
 
-        jTextArea3.setColumns(20);
-        jTextArea3.setRows(5);
+        jTextArea3.setColumns(5);
+        jTextArea3.setRows(1);
         nameField.setViewportView(jTextArea3);
 
         jLabel3.setText("Name");
 
-        weightField.setColumns(20);
-        weightField.setRows(5);
+        weightField.setColumns(5);
+        weightField.setRows(1);
         jScrollPane4.setViewportView(weightField);
 
         jLabel4.setText("Weight");
 
         jLabel5.setText("Given Knowleadge");
 
-        jTextArea6.setColumns(20);
-        jTextArea6.setRows(5);
+        jTextArea6.setColumns(5);
+        jTextArea6.setRows(1);
         givenThinkingField.setViewportView(jTextArea6);
 
         jLabel7.setText("Given Thinking");
 
-        jTextArea7.setColumns(20);
-        jTextArea7.setRows(5);
+        jTextArea7.setColumns(5);
+        jTextArea7.setRows(1);
         givenKnowleadgeField.setViewportView(jTextArea7);
 
         jLabel8.setText("Given Application");
 
-        jTextArea8.setColumns(20);
-        jTextArea8.setRows(5);
+        jTextArea8.setColumns(5);
+        jTextArea8.setLineWrap(true);
+        jTextArea8.setRows(1);
         maxThinkingFIeld.setViewportView(jTextArea8);
 
         jLabel9.setText("Max Thinking");
 
-        jTextArea9.setColumns(20);
-        jTextArea9.setRows(5);
+        jTextArea9.setColumns(5);
+        jTextArea9.setRows(1);
         maxKnowleadgeField.setViewportView(jTextArea9);
 
-        jTextArea10.setColumns(20);
-        jTextArea10.setRows(5);
+        jTextArea10.setColumns(5);
+        jTextArea10.setRows(1);
         maxCommunicationField.setViewportView(jTextArea10);
 
         jLabel10.setText("Max Communication");
 
-        givenCommunicationField.setColumns(20);
-        givenCommunicationField.setRows(5);
+        givenCommunicationField.setColumns(5);
+        givenCommunicationField.setRows(1);
         jScrollPane11.setViewportView(givenCommunicationField);
 
         jLabel11.setText("Max Knowleadge");
 
         jLabel12.setText("Given Communication");
 
-        maxApplicationField.setColumns(20);
-        maxApplicationField.setRows(5);
+        maxApplicationField.setColumns(5);
+        maxApplicationField.setRows(1);
         jScrollPane12.setViewportView(maxApplicationField);
 
-        jTextArea13.setColumns(20);
-        jTextArea13.setRows(5);
+        jTextArea13.setColumns(5);
+        jTextArea13.setRows(1);
         givenApplicationField.setViewportView(jTextArea13);
 
         jLabel13.setText("Max Application");
@@ -191,24 +192,9 @@ public class Gui extends javax.swing.JFrame {
                         .addGap(34, 34, 34)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel12)
+                                .addGap(9, 9, 9)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(jScrollPane11, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(maxCommunicationField, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(addMark, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(jLabel10)
-                                            .addComponent(removeMarkButton, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED))
-                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                        .addComponent(jLabel12)
-                                        .addGap(9, 9, 9)))
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(jLabel13, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(173, 173, 173))
                                     .addGroup(layout.createSequentialGroup()
                                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                             .addGroup(layout.createSequentialGroup()
@@ -223,11 +209,20 @@ public class Gui extends javax.swing.JFrame {
                                                 .addComponent(overallAverageButton, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)))
                                         .addGap(0, 0, Short.MAX_VALUE))
                                     .addGroup(layout.createSequentialGroup()
-                                        .addGap(108, 108, 108)
-                                        .addComponent(maxThinkingFIeld, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(maxKnowleadgeField, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addGroup(layout.createSequentialGroup()
+                                                .addGap(108, 108, 108)
+                                                .addComponent(maxThinkingFIeld, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                            .addGroup(layout.createSequentialGroup()
+                                                .addComponent(jLabel13, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addGap(45, 45, 45)))
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(jLabel11)
+                                            .addComponent(maxKnowleadgeField, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addGap(17, 17, 17))))
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(layout.createSequentialGroup()
@@ -248,12 +243,15 @@ public class Gui extends javax.swing.JFrame {
                                     .addGroup(layout.createSequentialGroup()
                                         .addComponent(givenThinkingField, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(jLabel11)
-                                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                                .addComponent(givenKnowleadgeField, javax.swing.GroupLayout.DEFAULT_SIZE, 111, Short.MAX_VALUE)
-                                                .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))))
-                                .addGap(9, 9, 9))))
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                            .addComponent(givenKnowleadgeField, javax.swing.GroupLayout.DEFAULT_SIZE, 111, Short.MAX_VALUE)
+                                            .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))))
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(jScrollPane11, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(maxCommunicationField, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(addMark, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jLabel10)
+                                .addComponent(removeMarkButton, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jLabel1)

@@ -33,29 +33,9 @@
                       <EmptySpace min="-2" pref="34" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" alignment="0" attributes="0">
+                              <Component id="jLabel12" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="9" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
-                                  <Group type="102" attributes="0">
-                                      <Group type="103" groupAlignment="0" attributes="0">
-                                          <Component id="jScrollPane11" alignment="0" min="-2" pref="111" max="-2" attributes="0"/>
-                                          <Component id="maxCommunicationField" alignment="0" min="-2" pref="111" max="-2" attributes="0"/>
-                                          <Component id="addMark" alignment="1" min="-2" pref="111" max="-2" attributes="0"/>
-                                          <Component id="jLabel10" alignment="0" min="-2" max="-2" attributes="0"/>
-                                          <Component id="removeMarkButton" alignment="1" min="-2" pref="111" max="-2" attributes="0"/>
-                                      </Group>
-                                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                  </Group>
-                                  <Group type="102" alignment="1" attributes="0">
-                                      <Component id="jLabel12" min="-2" max="-2" attributes="0"/>
-                                      <EmptySpace min="-2" pref="9" max="-2" attributes="0"/>
-                                  </Group>
-                              </Group>
-                              <Group type="103" groupAlignment="0" attributes="0">
-                                  <Group type="102" alignment="0" attributes="0">
-                                      <Component id="jLabel13" max="32767" attributes="0"/>
-                                      <EmptySpace max="-2" attributes="0"/>
-                                      <Component id="jLabel9" min="-2" pref="76" max="-2" attributes="0"/>
-                                      <EmptySpace min="-2" pref="173" max="-2" attributes="0"/>
-                                  </Group>
                                   <Group type="102" attributes="0">
                                       <Group type="103" groupAlignment="0" attributes="0">
                                           <Group type="102" alignment="0" attributes="0">
@@ -74,11 +54,24 @@
                                       <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                                   </Group>
                                   <Group type="102" alignment="0" attributes="0">
-                                      <EmptySpace min="-2" pref="108" max="-2" attributes="0"/>
-                                      <Component id="maxThinkingFIeld" min="-2" pref="111" max="-2" attributes="0"/>
-                                      <EmptySpace max="-2" attributes="0"/>
-                                      <Component id="maxKnowleadgeField" min="-2" pref="111" max="-2" attributes="0"/>
-                                      <EmptySpace max="32767" attributes="0"/>
+                                      <Group type="103" groupAlignment="0" attributes="0">
+                                          <Group type="102" alignment="0" attributes="0">
+                                              <EmptySpace min="-2" pref="108" max="-2" attributes="0"/>
+                                              <Component id="maxThinkingFIeld" min="-2" pref="111" max="-2" attributes="0"/>
+                                              <EmptySpace max="32767" attributes="0"/>
+                                          </Group>
+                                          <Group type="102" attributes="0">
+                                              <Component id="jLabel13" max="32767" attributes="0"/>
+                                              <EmptySpace max="-2" attributes="0"/>
+                                              <Component id="jLabel9" min="-2" pref="76" max="-2" attributes="0"/>
+                                              <EmptySpace min="-2" pref="45" max="-2" attributes="0"/>
+                                          </Group>
+                                      </Group>
+                                      <Group type="103" groupAlignment="0" attributes="0">
+                                          <Component id="jLabel11" min="-2" max="-2" attributes="0"/>
+                                          <Component id="maxKnowleadgeField" min="-2" pref="111" max="-2" attributes="0"/>
+                                      </Group>
+                                      <EmptySpace min="-2" pref="17" max="-2" attributes="0"/>
                                   </Group>
                               </Group>
                           </Group>
@@ -107,16 +100,19 @@
                                   <Group type="102" alignment="0" attributes="0">
                                       <Component id="givenThinkingField" min="-2" pref="111" max="-2" attributes="0"/>
                                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                      <Group type="103" groupAlignment="0" attributes="0">
-                                          <Component id="jLabel11" min="-2" max="-2" attributes="0"/>
-                                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                              <Component id="givenKnowleadgeField" pref="111" max="32767" attributes="0"/>
-                                              <Component id="jLabel5" max="32767" attributes="0"/>
-                                          </Group>
+                                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                          <Component id="givenKnowleadgeField" pref="111" max="32767" attributes="0"/>
+                                          <Component id="jLabel5" max="32767" attributes="0"/>
                                       </Group>
                                   </Group>
                               </Group>
-                              <EmptySpace min="-2" pref="9" max="-2" attributes="0"/>
+                          </Group>
+                          <Group type="103" alignment="0" groupAlignment="0" attributes="0">
+                              <Component id="jScrollPane11" alignment="0" min="-2" pref="111" max="-2" attributes="0"/>
+                              <Component id="maxCommunicationField" alignment="0" min="-2" pref="111" max="-2" attributes="0"/>
+                              <Component id="addMark" alignment="1" min="-2" pref="111" max="-2" attributes="0"/>
+                              <Component id="jLabel10" alignment="0" min="-2" max="-2" attributes="0"/>
+                              <Component id="removeMarkButton" alignment="1" min="-2" pref="111" max="-2" attributes="0"/>
                           </Group>
                       </Group>
                   </Group>
@@ -256,8 +252,8 @@
       <SubComponents>
         <Component class="javax.swing.JTextArea" name="jTextArea2">
           <Properties>
-            <Property name="columns" type="int" value="20"/>
-            <Property name="rows" type="int" value="5"/>
+            <Property name="columns" type="int" value="5"/>
+            <Property name="rows" type="int" value="1"/>
           </Properties>
         </Component>
       </SubComponents>
@@ -276,8 +272,8 @@
       <SubComponents>
         <Component class="javax.swing.JTextArea" name="jTextArea3">
           <Properties>
-            <Property name="columns" type="int" value="20"/>
-            <Property name="rows" type="int" value="5"/>
+            <Property name="columns" type="int" value="5"/>
+            <Property name="rows" type="int" value="1"/>
           </Properties>
         </Component>
       </SubComponents>
@@ -296,8 +292,8 @@
       <SubComponents>
         <Component class="javax.swing.JTextArea" name="weightField">
           <Properties>
-            <Property name="columns" type="int" value="20"/>
-            <Property name="rows" type="int" value="5"/>
+            <Property name="columns" type="int" value="5"/>
+            <Property name="rows" type="int" value="1"/>
           </Properties>
         </Component>
       </SubComponents>
@@ -321,8 +317,8 @@
       <SubComponents>
         <Component class="javax.swing.JTextArea" name="jTextArea6">
           <Properties>
-            <Property name="columns" type="int" value="20"/>
-            <Property name="rows" type="int" value="5"/>
+            <Property name="columns" type="int" value="5"/>
+            <Property name="rows" type="int" value="1"/>
           </Properties>
         </Component>
       </SubComponents>
@@ -341,8 +337,8 @@
       <SubComponents>
         <Component class="javax.swing.JTextArea" name="jTextArea7">
           <Properties>
-            <Property name="columns" type="int" value="20"/>
-            <Property name="rows" type="int" value="5"/>
+            <Property name="columns" type="int" value="5"/>
+            <Property name="rows" type="int" value="1"/>
           </Properties>
         </Component>
       </SubComponents>
@@ -361,8 +357,9 @@
       <SubComponents>
         <Component class="javax.swing.JTextArea" name="jTextArea8">
           <Properties>
-            <Property name="columns" type="int" value="20"/>
-            <Property name="rows" type="int" value="5"/>
+            <Property name="columns" type="int" value="5"/>
+            <Property name="lineWrap" type="boolean" value="true"/>
+            <Property name="rows" type="int" value="1"/>
           </Properties>
         </Component>
       </SubComponents>
@@ -381,8 +378,8 @@
       <SubComponents>
         <Component class="javax.swing.JTextArea" name="jTextArea9">
           <Properties>
-            <Property name="columns" type="int" value="20"/>
-            <Property name="rows" type="int" value="5"/>
+            <Property name="columns" type="int" value="5"/>
+            <Property name="rows" type="int" value="1"/>
           </Properties>
         </Component>
       </SubComponents>
@@ -396,8 +393,8 @@
       <SubComponents>
         <Component class="javax.swing.JTextArea" name="jTextArea10">
           <Properties>
-            <Property name="columns" type="int" value="20"/>
-            <Property name="rows" type="int" value="5"/>
+            <Property name="columns" type="int" value="5"/>
+            <Property name="rows" type="int" value="1"/>
           </Properties>
         </Component>
       </SubComponents>
@@ -416,8 +413,8 @@
       <SubComponents>
         <Component class="javax.swing.JTextArea" name="givenCommunicationField">
           <Properties>
-            <Property name="columns" type="int" value="20"/>
-            <Property name="rows" type="int" value="5"/>
+            <Property name="columns" type="int" value="5"/>
+            <Property name="rows" type="int" value="1"/>
           </Properties>
         </Component>
       </SubComponents>
@@ -441,8 +438,8 @@
       <SubComponents>
         <Component class="javax.swing.JTextArea" name="maxApplicationField">
           <Properties>
-            <Property name="columns" type="int" value="20"/>
-            <Property name="rows" type="int" value="5"/>
+            <Property name="columns" type="int" value="5"/>
+            <Property name="rows" type="int" value="1"/>
           </Properties>
         </Component>
       </SubComponents>
@@ -456,8 +453,8 @@
       <SubComponents>
         <Component class="javax.swing.JTextArea" name="jTextArea13">
           <Properties>
-            <Property name="columns" type="int" value="20"/>
-            <Property name="rows" type="int" value="5"/>
+            <Property name="columns" type="int" value="5"/>
+            <Property name="rows" type="int" value="1"/>
           </Properties>
         </Component>
       </SubComponents>

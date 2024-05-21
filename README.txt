@@ -8,3 +8,5 @@ It should be able to have many courses.
 It should be able to calculate the course and grade average
 It should be able to calculate the grade of each "part" (ex, communication, application) by being given the given amount of points and total marts.
 It should allow for freely adding/removing grades.
+
+I SHOULD MAKE IT SO THAT CLICKING EXIT ASKS IF YOU WANT TO SAVE IT TO THE FIRST DOCUMENT.

@@ -177,7 +177,9 @@ public class Gui extends javax.swing.JFrame {
             }
         });
 
-        exitButton.setLabel("Exit");
+        exitButton.setActionCommand("Exit and Export");
+        exitButton.setFont(new java.awt.Font("Comic Sans MS", 0, 12)); // NOI18N
+        exitButton.setLabel("Exit and Export");
         exitButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 exitButtonActionPerformed(evt);
@@ -402,6 +404,8 @@ public class Gui extends javax.swing.JFrame {
 
     private void exitButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_exitButtonActionPerformed
         // TODO add your handling code here:
+
+        System.exit(0);
     }//GEN-LAST:event_exitButtonActionPerformed
 
     private void removeMarkButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_removeMarkButtonActionPerformed

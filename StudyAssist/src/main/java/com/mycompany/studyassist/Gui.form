@@ -530,7 +530,11 @@
     </Component>
     <Component class="java.awt.Button" name="exitButton">
       <Properties>
-        <Property name="label" type="java.lang.String" value="Exit"/>
+        <Property name="actionCommand" type="java.lang.String" value="Exit and Export"/>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Comic Sans MS" size="12" style="0"/>
+        </Property>
+        <Property name="label" type="java.lang.String" value="Exit and Export"/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="exitButtonActionPerformed"/>

@@ -1,4 +1,4 @@
-package culminatingTesting;
+package com.mycompany.studyassist;
 
 //Import necessary components
 import java.io.*;
@@ -6,39 +6,16 @@ import java.util.ArrayList;
 import java.util.Scanner;
 public class StudyAssist {
 // Define the array list that will be used for the entire program
-	    private static ArrayList<Mark> markArr = new ArrayList<>();
+	    private static final ArrayList<Mark> markArr = new ArrayList<>();
 	    private static final Scanner scan = new Scanner(System.in);
 	    
 	public static void main(String[] args) {
-		boolean running = true;
-		while (running) {
-            System.out.println("\nChoose an action: \n1. Query an Item\n2. Add a New Item\n3. Exit");
-            String choice = scan.nextLine().trim();
-         
-            // Switch to each option according to the user input
-            switch (choice) {
-                case "1":
-                    input();
-                    break;
-                case "2":
-                    courseAverage();
-                    break;
-                case "3":
-                    running = false;
-                    break;
-                default:
-                	// Error check & message
-                    System.out.println("Invalid option, option must be 1, 2, or 3.");
-            }
-        }
-		// Terminate the program
-        scan.close();
-        System.out.println("System Exited.");
+		System.out.println("Program started!");
 	}
 	
 	
 	public static void input() {
-		System.out.print("course code ");
+		System.out.print("course code: ");
 		String courseCode = scan.nextLine().trim();
 		
 		System.out.print("assignment name");

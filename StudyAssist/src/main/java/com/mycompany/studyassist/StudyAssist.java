@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.util.Scanner;
 public class StudyAssist {
 // Define the array list that will be used for the entire program
-	    private static final ArrayList<Mark> markArr = new ArrayList<>();
+	    static final ArrayList<Mark> markArr = new ArrayList<>();
 	    private static final Scanner scan = new Scanner(System.in);
 	    
 	public static void main(String[] args) {

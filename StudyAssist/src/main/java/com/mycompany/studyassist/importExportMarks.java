@@ -20,5 +20,13 @@ import java.io.*;
              throw new RuntimeException(e);
          }
      }
+
+     static private void writeIntoFile(){
+         StringBuilder whatToPrint = new StringBuilder();
+         for(StudyAssist.Mark mark: StudyAssist.markArr){
+             whatToPrint.append(String.valueOf(mark)).append("\n");
+         }
+
+     }
  }
 

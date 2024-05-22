@@ -5,13 +5,14 @@
 package com.mycompany.studyassist;
 
 import static com.mycompany.studyassist.ExportOrNot.ExportQuestionPopup;
+import java.util.ArrayList;
 
 /**
  *
  * @author alex_
  */
 public class Gui extends javax.swing.JFrame {
-
+    static ArrayList<Mark> markArr = new ArrayList<>();
     /**
      * Creates new form Gui
      */
@@ -32,17 +33,17 @@ public class Gui extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         display = new javax.swing.JTextArea();
         courseCodeField = new javax.swing.JScrollPane();
-        courseCodeTextFIeld = new javax.swing.JTextArea();
+        courseCodeTextField = new javax.swing.JTextArea();
         jLabel2 = new javax.swing.JLabel();
         nameField = new javax.swing.JScrollPane();
-        nameTextFIeld = new javax.swing.JTextArea();
+        nameTextField = new javax.swing.JTextArea();
         jLabel3 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         givenThinkingField = new javax.swing.JScrollPane();
         givenThinkingTextField = new javax.swing.JTextArea();
         jLabel7 = new javax.swing.JLabel();
         givenKnowleadgeField = new javax.swing.JScrollPane();
-        givenKnowleadgeTextFIeld = new javax.swing.JTextArea();
+        givenKnowledgeTextField = new javax.swing.JTextArea();
         jLabel8 = new javax.swing.JLabel();
         maxThinkingFIeld = new javax.swing.JScrollPane();
         maxThinkingTextField = new javax.swing.JTextArea();
@@ -75,7 +76,7 @@ public class Gui extends javax.swing.JFrame {
         jLabel15 = new javax.swing.JLabel();
         jLabel16 = new javax.swing.JLabel();
         weightCommunicationField = new javax.swing.JScrollPane();
-        WeightCommunicationTextField = new javax.swing.JTextArea();
+        weightCommunicationTextField = new javax.swing.JTextArea();
         jLabel17 = new javax.swing.JLabel();
         maxThinkingFIeld1 = new javax.swing.JScrollPane();
         weightThinkingTextField = new javax.swing.JTextArea();
@@ -93,15 +94,15 @@ public class Gui extends javax.swing.JFrame {
         display.setRows(5);
         jScrollPane1.setViewportView(display);
 
-        courseCodeTextFIeld.setColumns(5);
-        courseCodeTextFIeld.setRows(1);
-        courseCodeField.setViewportView(courseCodeTextFIeld);
+        courseCodeTextField.setColumns(5);
+        courseCodeTextField.setRows(1);
+        courseCodeField.setViewportView(courseCodeTextField);
 
         jLabel2.setText("Course Code");
 
-        nameTextFIeld.setColumns(5);
-        nameTextFIeld.setRows(1);
-        nameField.setViewportView(nameTextFIeld);
+        nameTextField.setColumns(5);
+        nameTextField.setRows(1);
+        nameField.setViewportView(nameTextField);
 
         jLabel3.setText("Name");
 
@@ -113,9 +114,9 @@ public class Gui extends javax.swing.JFrame {
 
         jLabel7.setText("Given Thinking");
 
-        givenKnowleadgeTextFIeld.setColumns(5);
-        givenKnowleadgeTextFIeld.setRows(1);
-        givenKnowleadgeField.setViewportView(givenKnowleadgeTextFIeld);
+        givenKnowledgeTextField.setColumns(5);
+        givenKnowledgeTextField.setRows(1);
+        givenKnowleadgeField.setViewportView(givenKnowledgeTextField);
 
         jLabel8.setText("Given Application");
 
@@ -202,9 +203,9 @@ public class Gui extends javax.swing.JFrame {
 
         jLabel16.setText("Weight Knowledge");
 
-        WeightCommunicationTextField.setColumns(5);
-        WeightCommunicationTextField.setRows(1);
-        weightCommunicationField.setViewportView(WeightCommunicationTextField);
+        weightCommunicationTextField.setColumns(5);
+        weightCommunicationTextField.setRows(1);
+        weightCommunicationField.setViewportView(weightCommunicationTextField);
 
         jLabel17.setText("Weight Application");
 
@@ -402,11 +403,43 @@ public class Gui extends javax.swing.JFrame {
 
     private void addMarkButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addMarkButtonActionPerformed
         // TODO add your handling code here:
+        String courseCode = courseCodeTextField.getText().trim();
+	
+	String assignmentName = nameTextField.getText().trim();
+        
+	double kMark = Double.parseDouble(givenKnowledgeTextField.getText().trim());
+	double kMaxMark = Double.parseDouble(maxKnowledgeTextField.getText().trim());
+	double kWeight = Double.parseDouble(weightKnowledgeTextField.getText().trim());
+		
+	double tMark = Double.parseDouble(givenThinkingTextField.getText().trim());
+	double tMaxMark = Double.parseDouble(maxThinkingTextField.getText().trim());
+	double tWeight = Double.parseDouble(weightThinkingTextField.getText().trim());
+		
+	double cMark = Double.parseDouble(givenCommunicationTextField.getText().trim());
+	double cMaxMark = Double.parseDouble(maxCommunicationTextField.getText().trim());
+	double cWeight = Double.parseDouble(weightCommunicationTextField.getText().trim());
+		
+	double aMark = Double.parseDouble(givenApplicationTextField.getText().trim());
+	double aMaxMark = Double.parseDouble(maxApplicationTextField.getText().trim());
+	double aWeight = Double.parseDouble(weightApplicationTextField.getText().trim());
+		
+               
+	double culminatingMark = 0;
+	double culminatingMaxMark = 100;
+	double culminatingWeight = 30;
+                
+	Mark newMark = new Mark(courseCode, assignmentName, kMark, kMaxMark, kWeight, tMark, tMaxMark, tWeight, cMark, 
+				cMaxMark, cWeight, aMark, aMaxMark, aWeight, culminatingMark, culminatingMaxMark, culminatingWeight);
+		
+	display.setText(newMark.toString());
+	markArr.add(newMark);
+	for (Mark item : markArr) {
+            System.out.println(item);
+	}
     }//GEN-LAST:event_addMarkButtonActionPerformed
 
     private void exitButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_exitButtonActionPerformed
         // TODO add your handling code here:
-
         ExportQuestionPopup();
     }//GEN-LAST:event_exitButtonActionPerformed
 
@@ -452,19 +485,232 @@ public class Gui extends javax.swing.JFrame {
             }
         });
     }
+    
+    public static class Mark {
+	    private String courseCode;
+	    private String assignmentName;
+	    
+	    private double kMark;
+	    private double kMaxMark;
+	    private double kWeight;
+	    
+	    private double tMark;
+	    private double tMaxMark;
+	    private double tWeight;
+	    
+	    private double cMark;
+	    private double cMaxMark;
+	    private double cWeight;
+	    
+	    private double aMark;
+	    private double aMaxMark;
+	    private double aWeight;
+	    
+	    private double culminatingMark;
+	    private double culminatingMaxMark;
+	    private double culminatingWeight;
+	    
+	    // Constructor 
+	    public Mark(String courseCode, String assignmentName, double kMark, double kMaxMark, double kWeight, double tMark, 
+	    			double tMaxMark, double tWeight, double cMark, double cMaxMark, double cWeight, double aMark,
+	                double aMaxMark, double aWeight, double culminatingMark, double culminatingMaxMark, double culminatingWeight) {
+	    	
+	        this.courseCode = courseCode;
+	        this.assignmentName = assignmentName;
+	        
+	        this.kMark = kMark;
+	        this.kMaxMark = kMaxMark;
+	        this.kWeight = kWeight;
+	        
+	        this.tMark = tMark;
+	        this.tMaxMark = tMaxMark;
+	        this.tWeight = tWeight;
+	        
+	        this.cMark = cMark;
+	        this.cMaxMark = cMaxMark;
+	        this.cWeight = cWeight;
+	        
+	        this.aMark = aMark;
+	        this.aMaxMark = aMaxMark;
+	        this.aWeight = aWeight;
+	        
+	        this.culminatingMark = culminatingMark;
+	        this.culminatingMaxMark = culminatingMaxMark;
+	        this.culminatingWeight = culminatingWeight;
+	    }
+
+	    // Getter and Setter for courseCode
+	    public String getCourseCode() {
+	        return courseCode;
+	    }
+
+	    public void setCourseCode(String courseCode) {
+	        this.courseCode = courseCode;
+	    }
+	    
+	    // Getter and Setter for assignmentName
+	    public String getAssignmentName() {
+	        return assignmentName;
+	    }
+
+	    public void setAssignmentName(String assignmentName) {
+	        this.assignmentName = assignmentName;
+	    }
+
+	    // Getter and Setter for kMark
+	    public double getKMark() {
+	        return kMark;
+	    }
+
+	    public void setKMark(double kMark) {
+	        this.kMark = kMark;
+	    }
+	    
+	    // Getter and Setter for kMaxMark
+	    public double getKMaxMark() {
+	        return kMaxMark;
+	    }
+
+	    public void setKMaxMark(double kMaxMark) {
+	        this.kMaxMark = kMaxMark;
+	    }
+	    
+	    // Getter and Setter for kWeight
+	    public double getKWeight() {
+	        return kWeight;
+	    }
+
+	    public void setKWeight(double kWeight) {
+	        this.kWeight = kWeight;
+	    }
+
+	    // Getter and Setter for tMark
+	    public double getTMark() {
+	        return tMark;
+	    }
+
+	    public void setTMark(double tMark) {
+	        this.tMark = tMark;
+	    }
+	    
+	    // Getter and Setter for tMaxMark
+	    public double getTMaxMark() {
+	        return tMaxMark;
+	    }
+
+	    public void setTMaxMark(double tMaxMark) {
+	        this.tMaxMark = tMaxMark;
+	    }
+
+	    // Getter and Setter for tWeight
+	    public double getTWeight() {
+	        return tWeight;
+	    }
+
+	    public void setTWeight(double tWeight) {
+	        this.tWeight = tWeight;
+	    }
+
+	    // Getter and Setter for cMark
+	    public double getCMark() {
+	        return cMark;
+	    }
+
+	    public void setCMark(double cMark) {
+	        this.cMark = cMark;
+	    }
+	    
+	    // Getter and Setter for cMaxMark
+	    public double getCMaxMark() {
+	        return cMaxMark;
+	    }
+
+	    public void setCMaxMark(double cMaxMark) {
+	        this.cMaxMark = cMaxMark;
+	    }
+
+	    // Getter and Setter for cWeight
+	    public double getCWeight() {
+	        return cWeight;
+	    }
+
+	    public void setCWeight(double cWeight) {
+	        this.cWeight = cWeight;
+	    }
+
+	    // Getter and Setter for aMark
+	    public double getAMark() {
+	        return aMark;
+	    }
+
+	    public void setAMark(double aMark) {
+	        this.aMark = aMark;
+	    }
+	    
+	    // Getter and Setter for aMaxMark
+	    public double getAMaxMark() {
+	        return aMaxMark;
+	    }
+
+	    public void setAMaxMark(double aMaxMark) {
+	        this.aMaxMark = aMaxMark;
+	    }
+
+	    // Getter and Setter for aWeight
+	    public double getAWeight() {
+	        return aWeight;
+	    }
+
+	    public void setAWeight(double aWeight) {
+	        this.aWeight = aWeight;
+	    }
+
+	    // Getter and Setter for culminatingMark
+	    public double getCulminatingMark() {
+	        return culminatingMark;
+	    }
+
+	    public void setCulminatingMark(double culminatingMark) {
+	        this.culminatingMark = culminatingMark;
+	    }
+	    
+	    // Getter and Setter for culminatingMark
+	    public double getCulminatingMaxMark() {
+	        return culminatingMaxMark;
+	    }
+
+	    public void setCulminatingMaxMark(double culminatingMaxMark) {
+	        this.culminatingMaxMark = culminatingMaxMark;
+	    }
+
+	    // Getter and Setter for culminatingWeight
+	    public double getCulminatingWeight() {
+	        return culminatingWeight;
+	    }
+	    
+	    public void setCulminatingWeight(double culminatingWeight) {
+	        this.culminatingWeight = culminatingWeight;
+	    }
+	    
+	    public String toString() {
+	    	return String.format("%s,%s,%.1f,%.1f,%.1f,%.1f,%.1f,%.1f,%.1f,%.1f,%.1f,%.1f,%.1f,%.1f,%.1f,%.1f,%.1f",
+                    courseCode, assignmentName, kMark, kMaxMark, kWeight, tMark, tMaxMark, tWeight, cMark,
+                    cMaxMark, cWeight, aMark, aMaxMark, aWeight, culminatingMark, culminatingMaxMark, culminatingWeight);
+	    }
+	        
+	}
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JTextArea WeightCommunicationTextField;
     private java.awt.Button addMarkButton;
     private javax.swing.JScrollPane courseCodeField;
-    private javax.swing.JTextArea courseCodeTextFIeld;
+    private javax.swing.JTextArea courseCodeTextField;
     private javax.swing.JTextArea display;
     private java.awt.Button exitButton;
     private javax.swing.JScrollPane givenApplicationField;
     private javax.swing.JTextArea givenApplicationTextField;
     private javax.swing.JTextArea givenCommunicationTextField;
     private javax.swing.JScrollPane givenKnowleadgeField;
-    private javax.swing.JTextArea givenKnowleadgeTextFIeld;
+    private javax.swing.JTextArea givenKnowledgeTextField;
     private javax.swing.JScrollPane givenThinkingField;
     private javax.swing.JTextArea givenThinkingTextField;
     private javax.swing.JLabel jLabel1;
@@ -496,13 +742,14 @@ public class Gui extends javax.swing.JFrame {
     private javax.swing.JScrollPane maxThinkingFIeld1;
     private javax.swing.JTextArea maxThinkingTextField;
     private javax.swing.JScrollPane nameField;
-    private javax.swing.JTextArea nameTextFIeld;
+    private javax.swing.JTextArea nameTextField;
     private java.awt.Button overallAverageButton;
     private java.awt.Button removeMarkButton;
     private java.awt.Button searchMarkButton;
     private java.awt.Button top6AverageButton;
     private javax.swing.JTextArea weightApplicationTextField;
     private javax.swing.JScrollPane weightCommunicationField;
+    private javax.swing.JTextArea weightCommunicationTextField;
     private javax.swing.JTextArea weightKnowledgeTextField;
     private javax.swing.JTextArea weightThinkingTextField;
     // End of variables declaration//GEN-END:variables

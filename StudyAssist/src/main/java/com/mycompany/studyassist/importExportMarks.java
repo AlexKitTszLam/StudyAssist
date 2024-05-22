@@ -23,7 +23,7 @@ import java.io.*;
 
      public static void writeIntoFile(){
          StringBuilder whatToPrint = new StringBuilder();
-         for(StudyAssist.Mark mark: StudyAssist.markArr){
+         for(Gui.Mark mark: Gui.markArr){
              whatToPrint.append(String.valueOf(mark)).append("\n");
              try {
                  writer.write(String.valueOf(whatToPrint));

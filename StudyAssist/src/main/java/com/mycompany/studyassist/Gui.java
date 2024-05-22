@@ -4,6 +4,8 @@
  */
 package com.mycompany.studyassist;
 
+import static com.mycompany.studyassist.ExportOrNot.ExportQuestionPopup;
+
 /**
  *
  * @author alex_
@@ -405,7 +407,7 @@ public class Gui extends javax.swing.JFrame {
     private void exitButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_exitButtonActionPerformed
         // TODO add your handling code here:
 
-        System.exit(0);
+        ExportQuestionPopup();
     }//GEN-LAST:event_exitButtonActionPerformed
 
     private void removeMarkButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_removeMarkButtonActionPerformed

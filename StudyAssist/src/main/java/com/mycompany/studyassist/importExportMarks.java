@@ -21,10 +21,15 @@ import java.io.*;
          }
      }
 
-     static private void writeIntoFile(){
+     public static void writeIntoFile(){
          StringBuilder whatToPrint = new StringBuilder();
          for(StudyAssist.Mark mark: StudyAssist.markArr){
              whatToPrint.append(String.valueOf(mark)).append("\n");
+             try {
+                 writer.write(String.valueOf(whatToPrint));
+             } catch (IOException e) {
+                 throw new RuntimeException(e);
+             }
          }
 
      }

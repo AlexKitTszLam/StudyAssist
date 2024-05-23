@@ -28,7 +28,7 @@ public class searchMark {
             if(!foundMarks.isEmpty()){
                 addToDisplay();
             }else{
-                int notFound = JOptionPane.showConfirmDialog(null, "Did not find any assignments!", "uh", JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showInputDialog(null, "Did not find any assignments!", "uh", JOptionPane.ERROR_MESSAGE);
             }
 
 
@@ -38,11 +38,10 @@ public class searchMark {
                     foundMarks.add(mark);
                 }
             }
-
             if(!foundMarks.isEmpty()){
                 addToDisplay();
             }else{
-                int notFound = JOptionPane.showConfirmDialog(null, "Did not find any assignments!", "uh", JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showInputDialog(null, "Did not find any assignments!", "uh", JOptionPane.ERROR_MESSAGE);
             }
 
 
@@ -56,12 +55,12 @@ public class searchMark {
             if(!foundMarks.isEmpty()){
                 addToDisplay();
             }else{
-                int notFound = JOptionPane.showConfirmDialog(null, "Did not find any assignments!", "uh", JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showInputDialog(null, "Did not find any assignments!", "uh", JOptionPane.ERROR_MESSAGE);
             }
 
 
         } else {
-            int notFound = JOptionPane.showConfirmDialog(null, "Did not see a name or course code.", "uh", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showInputDialog(null, "no name or course code was provided", "uh", JOptionPane.ERROR_MESSAGE);
         }
     }
 

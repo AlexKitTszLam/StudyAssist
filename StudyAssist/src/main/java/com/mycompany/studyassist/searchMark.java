@@ -19,7 +19,8 @@ public class searchMark {
     public static void markFinder() {
         System.out.println("Starting to look for marks");
 
-        if (nameTextField.getText() != null && courseCodeTextField.getText() != null) { //course code AND mark
+        if (!nameTextField.getText().equalsIgnoreCase("") && !courseCodeTextField.getText().equalsIgnoreCase("")) { //course code AND mark
+            System.out.println("Name and CC was given");
             for(Gui.Mark mark: Gui.markArr){
                 if(mark.getAssignmentName().equalsIgnoreCase(nameTextField.getName()) && mark.getCourseCode().equalsIgnoreCase(courseCodeTextField.getName())){
                     foundMarks.add(mark);
@@ -28,11 +29,12 @@ public class searchMark {
             if(!foundMarks.isEmpty()){
                 addToDisplay();
             }else{
-                JOptionPane.showConfirmDialog(null, "Did not find any assignments!", "uh", JOptionPane.INFORMATION_MESSAGE);
+                JOptionPane.showMessageDialog(null, "Did not find any assignments!", "uh", JOptionPane.INFORMATION_MESSAGE);
             }
 
 
-        } else if (courseCodeTextField.getText() != null) { //course code only
+        } else if (!courseCodeTextField.getText().equalsIgnoreCase("")) { //course code only
+            System.out.println("Course code was given");
             for(Gui.Mark mark: Gui.markArr){
                 if(mark.getCourseCode().equalsIgnoreCase(courseCodeTextField.getName())){
                     foundMarks.add(mark);
@@ -41,11 +43,12 @@ public class searchMark {
             if(!foundMarks.isEmpty()){
                 addToDisplay();
             }else{
-                JOptionPane.showConfirmDialog(null, "Did not find any assignments!", "uh", JOptionPane.INFORMATION_MESSAGE);
+                JOptionPane.showMessageDialog(null, "Did not find any assignments!", "uh", JOptionPane.INFORMATION_MESSAGE);
             }
 
 
-        } else if (nameTextField.getText() != null) { //name only
+        } else if (!nameTextField.getText().equalsIgnoreCase("")) { //name only
+            System.out.println("name was given");
             for(Gui.Mark mark: Gui.markArr){
                 if(mark.getAssignmentName().equalsIgnoreCase(nameTextField.getName())){
                     foundMarks.add(mark);
@@ -55,12 +58,12 @@ public class searchMark {
             if(!foundMarks.isEmpty()){
                 addToDisplay();
             }else{
-                JOptionPane.showConfirmDialog(null, "Did not find any assignments!", "uh", JOptionPane.INFORMATION_MESSAGE);
+                JOptionPane.showMessageDialog(null, "Did not find any assignments!", "uh", JOptionPane.INFORMATION_MESSAGE);
             }
 
 
         } else {
-             JOptionPane.showConfirmDialog(null, "no name or course code was provided", "uh", JOptionPane.INFORMATION_MESSAGE);
+             JOptionPane.showMessageDialog(null, "no name or course code was provided", "uh", JOptionPane.INFORMATION_MESSAGE);
         }
     }
 

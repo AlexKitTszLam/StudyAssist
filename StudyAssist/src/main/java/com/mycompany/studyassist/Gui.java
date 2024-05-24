@@ -800,6 +800,7 @@ public class Gui extends javax.swing.JFrame {
 	        
 	}
 
+    // When opening/changing the ui, it will change the projected static elements, which breaks the searchMark. 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private java.awt.Button addMarkButton;
     private java.awt.Button courseAverageButton;

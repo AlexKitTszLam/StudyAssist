@@ -92,7 +92,7 @@ public class Gui extends javax.swing.JFrame {
         givenCulminatingTextField = new javax.swing.JTextArea();
         jLabel19 = new javax.swing.JLabel();
         weightCulminatingField = new javax.swing.JScrollPane();
-        weightThinkingTextField1 = new javax.swing.JTextArea();
+        weightCulminatingTextField = new javax.swing.JTextArea();
         jLabel20 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -118,7 +118,7 @@ public class Gui extends javax.swing.JFrame {
         nameTextField.setRows(1);
         nameField.setViewportView(nameTextField);
 
-        jLabel3.setText("Name");
+        jLabel3.setText("Assignment Name");
 
         jLabel5.setText("Given Knowledge");
 
@@ -259,10 +259,10 @@ public class Gui extends javax.swing.JFrame {
 
         jLabel19.setText("Max Culminating");
 
-        weightThinkingTextField1.setColumns(5);
-        weightThinkingTextField1.setLineWrap(true);
-        weightThinkingTextField1.setRows(1);
-        weightCulminatingField.setViewportView(weightThinkingTextField1);
+        weightCulminatingTextField.setColumns(5);
+        weightCulminatingTextField.setLineWrap(true);
+        weightCulminatingTextField.setRows(1);
+        weightCulminatingField.setViewportView(weightCulminatingTextField);
 
         jLabel20.setText("Weight Culminating");
 
@@ -321,9 +321,9 @@ public class Gui extends javax.swing.JFrame {
                                                                         .addComponent(courseCodeField, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
                                                                         .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE))
                                                                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                                        .addComponent(nameField, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                                        .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                                                        .addComponent(nameField, javax.swing.GroupLayout.DEFAULT_SIZE, 111, Short.MAX_VALUE)
+                                                                        .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                                                                 .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                                                     .addComponent(jScrollPane12, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
                                                                     .addComponent(givenApplicationField, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -490,6 +490,33 @@ public class Gui extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void courseAverageButtonActionPerformed(ActionEvent evt) {
+        String course = courseCodeTextField.getText();
+        double dailyMark = 0;
+	double culminatingMark = 0;
+        double dailyWeight = 0;
+        double culminatingWeight = 0;
+        
+        // Average Calculation when assuming the ktca sections are weighted equally
+        for (Mark item : markArr) {
+            String courseCode = item.getCourseCode();
+            if (course.equals(courseCode)) {
+		dailyMark = dailyMark + item.getKMark() / item.getKMaxMark() * item.getKWeight();
+		dailyMark = dailyMark + item.getTMark() / item.getTMaxMark() * item.getTWeight();
+		dailyMark = dailyMark + item.getCMark() / item.getCMaxMark() * item.getCWeight();
+		dailyMark = dailyMark + item.getAMark() / item.getAMaxMark() * item.getAWeight();
+                dailyWeight = dailyWeight + item.getKWeight() + item.getTWeight() + item.getCWeight() + item.getAWeight();
+                 
+		culminatingMark = culminatingMark + item.getCulminatingMark() / item.getCulminatingMaxMark() * item.getCulminatingWeight();
+                culminatingWeight = culminatingWeight + item.getCulminatingWeight();
+		}
+	}
+        double dailyAverage = dailyMark / dailyWeight;
+        double culminatingAverage = culminatingMark / culminatingWeight;
+        double courseAverage = dailyAverage * 0.7 + culminatingAverage * 0.3;
+        String text = String.format("Daily Average: %.1f\nCulminating Average: %.1f\nCourse Average: %.1f",
+                      dailyAverage, culminatingAverage,courseAverage);
+        display.setText("Daily Average: " + dailyAverage + "\nCulminating Average: " + culminatingAverage + 
+                        "\nOverall Course Average: " + courseAverage);
     }
 
     private void displayMarkButtonActionPerformed(ActionEvent evt) {
@@ -519,9 +546,9 @@ public class Gui extends javax.swing.JFrame {
 	double aWeight = Double.parseDouble(weightApplicationTextField.getText().trim());
 		
                
-	double culminatingMark = 0;
-	double culminatingMaxMark = 100;
-	double culminatingWeight = 30;
+	double culminatingMark = Double.parseDouble(givenCulminatingTextField.getText().trim());
+	double culminatingMaxMark = Double.parseDouble(maxCulminatingTextField.getText().trim());
+	double culminatingWeight = Double.parseDouble(weightCulminatingTextField.getText().trim());
                 
 	Mark newMark = new Mark(courseCode, assignmentName, kMark, kMaxMark, kWeight, tMark, tMaxMark, tWeight, cMark, 
 				cMaxMark, cWeight, aMark, aMaxMark, aWeight, culminatingMark, culminatingMaxMark, culminatingWeight);
@@ -805,8 +832,8 @@ public class Gui extends javax.swing.JFrame {
     private java.awt.Button addMarkButton;
     private java.awt.Button courseAverageButton;
     private javax.swing.JScrollPane courseCodeField;
-    protected static javax.swing.JTextArea courseCodeTextField;
-    protected static javax.swing.JTextArea display;
+    private javax.swing.JTextArea courseCodeTextField;
+    private javax.swing.JTextArea display;
     private java.awt.Button displayMarkButton;
     private java.awt.Button exitButton;
     private javax.swing.JScrollPane givenApplicationField;
@@ -851,7 +878,7 @@ public class Gui extends javax.swing.JFrame {
     private javax.swing.JScrollPane maxThinkingFIeld1;
     private javax.swing.JTextArea maxThinkingTextField;
     private javax.swing.JScrollPane nameField;
-    protected static javax.swing.JTextArea nameTextField;
+    private javax.swing.JTextArea nameTextField;
     private java.awt.Button overallAverageButton;
     private java.awt.Button removeMarkButton;
     private java.awt.Button searchMarkButton;
@@ -861,8 +888,8 @@ public class Gui extends javax.swing.JFrame {
     private javax.swing.JScrollPane weightCommunicationField1;
     private javax.swing.JTextArea weightCommunicationTextField;
     private javax.swing.JScrollPane weightCulminatingField;
+    private javax.swing.JTextArea weightCulminatingTextField;
     private javax.swing.JTextArea weightKnowledgeTextField;
     private javax.swing.JTextArea weightThinkingTextField;
-    private javax.swing.JTextArea weightThinkingTextField1;
     // End of variables declaration//GEN-END:variables
 }

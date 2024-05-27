@@ -869,7 +869,7 @@ public class Gui extends javax.swing.JFrame {
     private javax.swing.JScrollPane maxCommunicationField;
     private javax.swing.JScrollPane maxCommunicationField1;
     private javax.swing.JScrollPane maxCommunicationField2;
-    private javax.swing.JTextArea maxCommunicationTextField;x`
+    private javax.swing.JTextArea maxCommunicationTextField;
     private javax.swing.JTextArea maxCulminatingTextField;
     private javax.swing.JScrollPane maxKnowleadgeField;
     private javax.swing.JScrollPane maxKnowleadgeField1;

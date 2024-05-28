@@ -510,13 +510,11 @@ public class Gui extends javax.swing.JFrame {
                 culminatingWeight = culminatingWeight + item.getCulminatingWeight();
 		}
 	}
-        double dailyAverage = dailyMark / dailyWeight;
-        double culminatingAverage = culminatingMark / culminatingWeight;
+        double dailyAverage = dailyMark / dailyWeight * 100;
+        double culminatingAverage = culminatingMark / culminatingWeight * 100;
         double courseAverage = dailyAverage * 0.7 + culminatingAverage * 0.3;
-        String text = String.format("Daily Average: %.1f\nCulminating Average: %.1f\nCourse Average: %.1f",
-                      dailyAverage, culminatingAverage,courseAverage);
-        display.setText("Daily Average: " + dailyAverage + "\nCulminating Average: " + culminatingAverage + 
-                        "\nOverall Course Average: " + courseAverage);
+        display.setText(String.format("Daily Average: %.1f%%\nCulminating Average: %.1f%%\nCourse Average: %.1f%%",
+                        dailyAverage, culminatingAverage,courseAverage));
     }
 
     private void displayMarkButtonActionPerformed(ActionEvent evt) {

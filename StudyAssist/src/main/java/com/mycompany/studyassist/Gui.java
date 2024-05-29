@@ -609,8 +609,6 @@ public class Gui extends javax.swing.JFrame {
                 new Gui().setVisible(true);
             }
         });
-
-
     }
     
     public static class Mark {

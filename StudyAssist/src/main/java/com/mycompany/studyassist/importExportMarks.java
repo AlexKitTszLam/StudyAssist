@@ -5,7 +5,7 @@ import java.io.*;
  public class importExportMarks {
 
     static BufferedWriter writer; //note that due to the filename being "marks.txt", it will overwrite the old file. This is by design, as it should be writing to one file to allow for the person to actually view marks after rebooting.
-    static {
+     {
          try {
              writer = new BufferedWriter(new FileWriter("markFolder/marks.txt"));
          } catch (IOException e) {
@@ -15,7 +15,7 @@ import java.io.*;
 
      //it's a reader.
      static BufferedReader reader;
-     static {
+     {
          try {
              reader = new BufferedReader(new FileReader("markFolder/marks.txt"));
          } catch (IOException e) {

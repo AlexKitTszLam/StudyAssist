@@ -21,7 +21,7 @@ public class searchMark {
         if (!nameTextField.getText().equalsIgnoreCase("") && !courseCodeTextField.getText().equalsIgnoreCase("")) { //course code AND mark
             System.out.println("Name and CC was given");
             for(Gui.Mark mark: Gui.markArr){
-                if(mark.getAssignmentName().equalsIgnoreCase(nameTextField.getName()) && mark.getCourseCode().equalsIgnoreCase(courseCodeTextField.getName())){
+                if(mark.getAssignmentName().equalsIgnoreCase(nameTextField.getText()) && mark.getCourseCode().equalsIgnoreCase(courseCodeTextField.getText())){
                     foundMarks.add(mark);
                 }
             }
@@ -35,7 +35,7 @@ public class searchMark {
         } else if (!courseCodeTextField.getText().equalsIgnoreCase("")) { //course code only
             System.out.println("Course code was given");
             for(Gui.Mark mark: Gui.markArr){
-                if(mark.getCourseCode().equalsIgnoreCase(courseCodeTextField.getName())){
+                if(mark.getCourseCode().equalsIgnoreCase(courseCodeTextField.getText())){
                     foundMarks.add(mark);
                 }
             }
@@ -49,7 +49,7 @@ public class searchMark {
         } else if (!nameTextField.getText().equalsIgnoreCase("")) { //name only
             System.out.println("name was given");
             for(Gui.Mark mark: Gui.markArr){
-                if(mark.getAssignmentName().equalsIgnoreCase(nameTextField.getName())){
+                if(mark.getAssignmentName().equalsIgnoreCase(nameTextField.getText())){
                     foundMarks.add(mark);
                 }
             }
@@ -62,16 +62,20 @@ public class searchMark {
 
 
         } else {
+            System.out.println("nothing was provided?");
              JOptionPane.showMessageDialog(null, "no name or course code was provided", "uh", JOptionPane.INFORMATION_MESSAGE);
         }
     }
 
-    static StringBuilder whatToPrint;
-    public static void addToDisplay(){
-        for(Gui.Mark mark: Gui.markArr){
-            whatToPrint.append(String.valueOf(mark)).append("\n");
-            display.setText(String.valueOf(whatToPrint));
+    static StringBuilder whatToPrint = new StringBuilder();
+
+    //This is not how we should have it formatted in the end. Should be treated as placeholder until I do a better printing method.
+    public static void addToDisplay() {
+        whatToPrint.setLength(0);
+        for (Gui.Mark mark : foundMarks) {
+            whatToPrint.append(mark).append("\n");
         }
+        display.setText(whatToPrint.toString());
     }
     
 }

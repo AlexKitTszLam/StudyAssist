@@ -2,6 +2,7 @@ package com.mycompany.studyassist;
 import javax.swing.*;
 
 import static com.mycompany.studyassist.Gui.*;
+import static com.mycompany.studyassist.importExportMarks.createStorageFolder;
 
 public class removeMark { //given the course code nd name of assignment, it deletes.
 

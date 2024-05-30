@@ -13,10 +13,11 @@ import static com.mycompany.studyassist.importExportMarks.writer;
 
 //uses assignmentName to search for marks.
 public class searchMark {
-    static ArrayList<Gui.Mark> foundMarks = new ArrayList<>();
+
 
     public static void markFinder() {
         System.out.println("Starting to look for marks");
+        ArrayList<Gui.Mark> foundMarks = new ArrayList<>();
 
         if (!nameTextField.getText().equalsIgnoreCase("") && !courseCodeTextField.getText().equalsIgnoreCase("")) { //course code AND mark
             System.out.println("Name and CC was given");
@@ -72,11 +73,7 @@ public class searchMark {
     //This is not how we should have it formatted in the end. Should be treated as placeholder until I do a better printing method.
     public static void addToDisplay() {
         whatToPrint.setLength(0);
-        for (Gui.Mark mark : foundMarks) {
-            whatToPrint.append(mark).append("\n");
-        }
-        display.setText(whatToPrint.toString());
+        System.out.println("Call the method for displaying marks instead.");
     }
-    
 }
 

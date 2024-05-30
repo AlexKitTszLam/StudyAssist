@@ -519,7 +519,18 @@ public class Gui extends javax.swing.JFrame {
     }
 
     private void displayMarkButtonActionPerformed(ActionEvent evt) {
-        System.out.println("test");
+        String text = "All Existing Assignments:\n";
+        for (Mark item : markArr){
+            text += "Course code: " + item.getCourseCode() + " ";
+            text += "Assignment name: " + item.getAssignmentName() + "\n";
+            text += String.format("Knowledge - Mark: %.1f, Max Mark: %.1f, Weight: %.1f\n", item.getKMark(), item.getKMaxMark(), item.getKWeight());
+            text += String.format("Thinking - Mark: %.1f, Max Mark: %.1f, Weight: %.1f\n", item.getTMark(), item.getTMaxMark(), item.getTWeight());
+            text += String.format("Communication - Mark: %.1f, Max Mark: %.1f, Weight: %.1f\n", item.getCMark(), item.getCMaxMark(), item.getCWeight());
+            text += String.format("Application - Mark: %.1f, Max Mark: %.1f, Weight: %.1f\n", item.getAMark(), item.getAMaxMark(), item.getAWeight());
+            text += String.format("Culminating - Mark: %.1f, Max Mark: %.1f, Weight: %.1f\n", item.getCulminatingMark(), item.getCulminatingMaxMark(), item.getCulminatingWeight());
+            text += "\n";
+        }
+        display.setText(text);
     }
 
     private void addMarkButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addMarkButtonActionPerformed

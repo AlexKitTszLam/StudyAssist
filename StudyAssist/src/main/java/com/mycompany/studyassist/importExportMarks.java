@@ -46,12 +46,12 @@ public class importExportMarks {
          StringBuilder whatToPrint = new StringBuilder();
          for(Gui.Mark mark: Gui.markArr){
              whatToPrint.append(String.valueOf(mark)).append("\n");
-             try {
-                 writer.write(String.valueOf(whatToPrint));
-                 writer.flush();
-             } catch (IOException e) {
-                 throw new RuntimeException(e);
-             }
+         }
+         try {
+             writer.write(String.valueOf(whatToPrint));
+             writer.flush();
+         } catch (IOException e) {
+             throw new RuntimeException(e);
          }
 
 

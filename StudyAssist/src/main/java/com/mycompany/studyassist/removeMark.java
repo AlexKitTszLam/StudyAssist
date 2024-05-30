@@ -5,8 +5,9 @@ import static com.mycompany.studyassist.Gui.*;
 
 public class removeMark { //given the course code nd name of assignment, it deletes.
 
-    public static void removeMark() {
+    public static void removeThatMark() {
         //Makes sure that the person has the correct information needed to delete the mark
+        System.out.println("RemoveMarkButton was pressed");
         if (!courseCodeTextField.getText().equalsIgnoreCase("") && !nameTextField.getText().equalsIgnoreCase("")) {
             //asks if the persona intended to actually delete it.
             int doubleCheck = JOptionPane.YES_NO_OPTION;
@@ -14,6 +15,7 @@ public class removeMark { //given the course code nd name of assignment, it dele
                 for (Mark mark : markArr) {
                     if (mark.getCourseCode().equalsIgnoreCase(courseCodeTextField.getText()) && mark.getAssignmentName().equalsIgnoreCase(nameTextField.getText())) {
                         markArr.remove(mark);
+                        System.out.println("removed mark?");
                         break;
                     }
                 }

@@ -5,6 +5,7 @@
 package com.mycompany.studyassist;
 
 import static com.mycompany.studyassist.ExportOrNot.ExportQuestionPopup;
+import static com.mycompany.studyassist.removeMark.removeThatMark;
 import static com.mycompany.studyassist.searchMark.markFinder;
 
 import java.awt.event.ActionEvent;
@@ -565,6 +566,7 @@ public class Gui extends javax.swing.JFrame {
 
     private void removeMarkButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_removeMarkButtonActionPerformed
         // TODO add your handling code here:
+        removeThatMark();
     }//GEN-LAST:event_removeMarkButtonActionPerformed
 
     private void overallAverageButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_overallAverageButtonActionPerformed

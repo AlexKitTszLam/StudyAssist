@@ -514,8 +514,8 @@ public class Gui extends javax.swing.JFrame {
         double dailyAverage = dailyMark / dailyWeight * 100;
         double culminatingAverage = culminatingMark / culminatingWeight * 100;
         double courseAverage = dailyAverage * 0.7 + culminatingAverage * 0.3;
-        display.setText(String.format("Daily Average: %.1f%%\nCulminating Average: %.1f%%\nCourse Average: %.1f%%",
-                        dailyAverage, culminatingAverage,courseAverage));
+        display.setText(String.format("Course Code: %s\nDaily Average: %.1f%%\nCulminating Average: %.1f%%\nCourse Average: %.1f%%",
+                        course,dailyAverage, culminatingAverage,courseAverage));
     }
 
     private void displayMarkButtonActionPerformed(ActionEvent evt) {
@@ -582,6 +582,55 @@ public class Gui extends javax.swing.JFrame {
 
     private void overallAverageButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_overallAverageButtonActionPerformed
         // TODO add your handling code here:
+        ArrayList<String> allCourses = new ArrayList<>();
+        ArrayList<Double> allAverages = new ArrayList<>();
+        double overallAverage = 0;
+        String text = "";
+        
+        for (Mark item : markArr){
+            String course = item.getCourseCode();
+            if (!allCourses.contains(course)){
+                allCourses.add(course);
+            }
+        }
+        System.out.println(allCourses);
+        
+        // Average Calculation when assuming the ktca sections are weighted equally
+        for (String course : allCourses) {
+            double dailyMark = 0;
+            double culminatingMark = 0;
+            double dailyWeight = 0;
+            double culminatingWeight = 0;
+            for (Mark item : markArr){
+                if (course.equals(item.getCourseCode())) {
+		dailyMark = dailyMark + item.getKMark() / item.getKMaxMark() * item.getKWeight();
+		dailyMark = dailyMark + item.getTMark() / item.getTMaxMark() * item.getTWeight();
+		dailyMark = dailyMark + item.getCMark() / item.getCMaxMark() * item.getCWeight();
+		dailyMark = dailyMark + item.getAMark() / item.getAMaxMark() * item.getAWeight();
+                dailyWeight = dailyWeight + item.getKWeight() + item.getTWeight() + item.getCWeight() + item.getAWeight();
+                 
+		culminatingMark = culminatingMark + item.getCulminatingMark() / item.getCulminatingMaxMark() * item.getCulminatingWeight();
+                culminatingWeight = culminatingWeight + item.getCulminatingWeight();
+		}
+            }
+            double dailyAverage = dailyMark / dailyWeight * 100;
+            double culminatingAverage = culminatingMark / culminatingWeight * 100;
+            double courseAverage = dailyAverage * 0.7 + culminatingAverage * 0.3;
+            allAverages.add(courseAverage);
+	}
+        
+        for (double average : allAverages){
+            overallAverage += average;
+        }
+        overallAverage =  overallAverage / allCourses.size();
+        
+        for (int i = 0; i < allCourses.size(); i++){
+            text += "Course code: " + allCourses.get(i) + " ";
+            text += "Course Average: " + allAverages.get(i) + "\n";
+        }
+        text += "Overall Average: " + overallAverage;
+        
+        display.setText(text);
     }//GEN-LAST:event_overallAverageButtonActionPerformed
 
     private void searchMarkButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchMarkButtonActionPerformed

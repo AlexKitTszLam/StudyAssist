@@ -570,6 +570,9 @@
       <Properties>
         <Property name="label" type="java.lang.String" value="Top 6 Average"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="top6AverageButtonActionPerformed"/>
+      </Events>
     </Component>
     <Component class="java.awt.Button" name="removeMarkButton">
       <Properties>

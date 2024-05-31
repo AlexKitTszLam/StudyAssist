@@ -14,10 +14,10 @@ import static com.mycompany.studyassist.importExportMarks.writer;
 //uses assignmentName to search for marks.
 public class searchMark {
 
-
+    static ArrayList<Gui.Mark> foundMarks = new ArrayList<>();
     public static void markFinder() {
         System.out.println("Starting to look for marks");
-        ArrayList<Gui.Mark> foundMarks = new ArrayList<>();
+        foundMarks.clear();
 
         if (!nameTextField.getText().equalsIgnoreCase("") && !courseCodeTextField.getText().equalsIgnoreCase("")) { //course code AND mark
             System.out.println("Name and CC was given");
@@ -72,8 +72,18 @@ public class searchMark {
 
     //This is not how we should have it formatted in the end. Should be treated as placeholder until I do a better printing method.
     public static void addToDisplay() {
-        whatToPrint.setLength(0);
-        System.out.println("Call the method for displaying marks instead.");
+        StringBuilder text = new StringBuilder("All Existing Assignments:\n");
+        for (Mark item : foundMarks){
+            text.append("Course code: ").append(item.getCourseCode()).append(" ");
+            text.append("Assignment name: ").append(item.getAssignmentName()).append("\n");
+            text.append(String.format("Knowledge - Mark: %.1f, Max Mark: %.1f, Weight: %.1f\n", item.getKMark(), item.getKMaxMark(), item.getKWeight()));
+            text.append(String.format("Thinking - Mark: %.1f, Max Mark: %.1f, Weight: %.1f\n", item.getTMark(), item.getTMaxMark(), item.getTWeight()));
+            text.append(String.format("Communication - Mark: %.1f, Max Mark: %.1f, Weight: %.1f\n", item.getCMark(), item.getCMaxMark(), item.getCWeight()));
+            text.append(String.format("Application - Mark: %.1f, Max Mark: %.1f, Weight: %.1f\n", item.getAMark(), item.getAMaxMark(), item.getAWeight()));
+            text.append(String.format("Culminating - Mark: %.1f, Max Mark: %.1f, Weight: %.1f\n", item.getCulminatingMark(), item.getCulminatingMaxMark(), item.getCulminatingWeight()));
+            text.append("\n");
+        }
+        display.setText(text.toString());
     }
 }
 

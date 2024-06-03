@@ -10,6 +10,8 @@ import static com.mycompany.studyassist.searchMark.markFinder;
 
 import java.awt.event.ActionEvent;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 
 /**
  *
@@ -17,6 +19,8 @@ import java.util.ArrayList;
  */
 public class Gui extends javax.swing.JFrame {
     static ArrayList<Mark> markArr = new ArrayList<>();
+    ArrayList<String> topCourses;
+    ArrayList<Double> topAverages;
     /**
      * Creates new form Gui
      */
@@ -631,9 +635,9 @@ public class Gui extends javax.swing.JFrame {
         
         for (int i = 0; i < allCourses.size(); i++){
             text += "Course code: " + allCourses.get(i) + " ";
-            text += "Course Average: " + allAverages.get(i) + "\n";
+            text += String.format("Course Average: %.1f\n", allAverages.get(i));
         }
-        text += "Overall Average: " + overallAverage;
+        text += String.format("Overall Average: %.1f\n", overallAverage);
         
         display.setText(text);
     }//GEN-LAST:event_overallAverageButtonActionPerformed
@@ -645,21 +649,20 @@ public class Gui extends javax.swing.JFrame {
 
     private void top6AverageButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_top6AverageButtonActionPerformed
         // TODO add your handling code here:
-        ArrayList<String> allCourses = new ArrayList<>();
-        ArrayList<Double> allAverages = new ArrayList<>();
+        topCourses = new ArrayList<>();
+        topAverages = new ArrayList<>();
         double overallAverage = 0;
         String text = "";
         
         for (Mark item : markArr){
             String course = item.getCourseCode();
-            if (!allCourses.contains(course)){
-                allCourses.add(course);
+            if (!topCourses.contains(course)){
+                topCourses.add(course);
             }
         }
-        System.out.println(allCourses);
         
         // Average Calculation when assuming the ktca sections are weighted equally
-        for (String course : allCourses) {
+        for (String course : topCourses) {
             double dailyMark = 0;
             double culminatingMark = 0;
             double dailyWeight = 0;
@@ -679,23 +682,44 @@ public class Gui extends javax.swing.JFrame {
             double dailyAverage = dailyMark / dailyWeight * 100;
             double culminatingAverage = culminatingMark / culminatingWeight * 100;
             double courseAverage = dailyAverage * 0.7 + culminatingAverage * 0.3;
-            allAverages.add(courseAverage);
+            topAverages.add(courseAverage);
 	}
         
-        for (double average : allAverages){
-            overallAverage += average;
+        for (int i = 0; i < 6; i++){
+            overallAverage += topAverages.get(i);
+            text += "Course code: " + topCourses.get(i) + " ";
+            text += String.format("Course Average: %.1f\n", topAverages.get(i));
         }
-        overallAverage =  overallAverage / allCourses.size();
         
-        for (int i = 0; i < allCourses.size(); i++){
-            text += "Course code: " + allCourses.get(i) + " ";
-            text += "Course Average: " + allAverages.get(i) + "\n";
-        }
-        text += "Overall Average: " + overallAverage;
+        overallAverage =  overallAverage / 6;
+        text += String.format("Overall Average: %.1f\n", overallAverage);
         
         display.setText(text);
     }//GEN-LAST:event_top6AverageButtonActionPerformed
 
+    private void recursiveQuickSort(int low, int high) {
+        if (low < high) {
+            int pi = partition(low, high);
+            recursiveQuickSort(low, pi - 1);
+            recursiveQuickSort(pi + 1, high);
+        }
+    }
+
+    private int partition(int low, int high) {
+        double pivot = topAverages.get(high);
+        int i = low - 1;
+        for (int j = low; j < high; j++) {
+            if (topAverages.get(j) > pivot) {
+                i++;
+                Collections.swap(topAverages, i, j);
+                Collections.swap(topCourses, i, j);
+            }
+        }
+        Collections.swap(topAverages, i + 1, high);
+        Collections.swap(topCourses, i + 1, high);
+        return i + 1;
+    }
+    
     /**
      * @param args the command line arguments
      */

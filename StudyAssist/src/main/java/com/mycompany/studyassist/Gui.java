@@ -950,8 +950,8 @@ public class Gui extends javax.swing.JFrame {
     private java.awt.Button addMarkButton;
     private java.awt.Button courseAverageButton;
     private javax.swing.JScrollPane courseCodeField;
-    private javax.swing.JTextArea courseCodeTextField;
-    private javax.swing.JTextArea display;
+    protected static javax.swing.JTextArea courseCodeTextField;
+    protected static javax.swing.JTextArea display;
     private java.awt.Button displayMarkButton;
     private java.awt.Button exitButton;
     private javax.swing.JScrollPane givenApplicationField;
@@ -996,7 +996,7 @@ public class Gui extends javax.swing.JFrame {
     private javax.swing.JScrollPane maxThinkingFIeld1;
     private javax.swing.JTextArea maxThinkingTextField;
     private javax.swing.JScrollPane nameField;
-    private javax.swing.JTextArea nameTextField;
+    protected static javax.swing.JTextArea nameTextField;
     private java.awt.Button overallAverageButton;
     private java.awt.Button removeMarkButton;
     private java.awt.Button searchMarkButton;

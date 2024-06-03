@@ -5,10 +5,12 @@
 package com.mycompany.studyassist;
 
 import static com.mycompany.studyassist.ExportOrNot.ExportQuestionPopup;
+import static com.mycompany.studyassist.importExportMarks.arrayAdder;
 import static com.mycompany.studyassist.removeMark.removeThatMark;
 import static com.mycompany.studyassist.searchMark.markFinder;
 
 import java.awt.event.ActionEvent;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
@@ -753,6 +755,12 @@ public class Gui extends javax.swing.JFrame {
                 new Gui().setVisible(true);
             }
         });
+
+        try {
+            arrayAdder();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
     }
     
     public static class Mark {

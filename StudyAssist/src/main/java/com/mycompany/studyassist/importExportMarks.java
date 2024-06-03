@@ -1,10 +1,14 @@
 package com.mycompany.studyassist;
 
 import java.io.*;
+import java.util.ArrayList;
 import java.nio.*;
 import java.nio.file.Files;
 
+import static com.mycompany.studyassist.Gui.markArr;
+
 public class importExportMarks {
+
 
     static BufferedWriter writer; //note that due to the filename being "marks.txt", it will overwrite the old file. This is by design, as it should be writing to one file to allow for the person to actually view marks after rebooting.
      static {
@@ -44,7 +48,7 @@ public class importExportMarks {
      //This method is so the array is made into a format that is easier for the writer to write into.
      public static void writeIntoFile(){
          StringBuilder whatToPrint = new StringBuilder();
-         for(Gui.Mark mark: Gui.markArr){
+         for(Gui.Mark mark: markArr){
              whatToPrint.append(String.valueOf(mark)).append("\n");
          }
          try {
@@ -53,6 +57,50 @@ public class importExportMarks {
          } catch (IOException e) {
              throw new RuntimeException(e);
          }
+
+
+     }
+
+     public static void arrayAdder() throws IOException {
+         //e
+         String addedMark;
+         do{
+             addedMark = reader.readLine();
+             if(addedMark != null){
+                 String[] markInfo = addedMark.split(",");
+                 if(markInfo.length == 17){
+                     String courseCode = markInfo[0];
+                     String assignmentName = markInfo[1];
+                     double kMark = Double.parseDouble(markInfo[2]);
+                     double kMaxMark = Double.parseDouble(markInfo[3]);
+                     double kWeight = Double.parseDouble(markInfo[4]);
+                     double tMark = Double.parseDouble(markInfo[5]);
+                     double tMaxMark = Double.parseDouble(markInfo[6]);
+                     double tWeight = Double.parseDouble(markInfo[7]);
+                     double cMark = Double.parseDouble(markInfo[8]);
+                     double cMaxMark = Double.parseDouble(markInfo[9]);
+                     double cWeight = Double.parseDouble(markInfo[10]);
+                     double aMark = Double.parseDouble(markInfo[11]);
+                     double aMaxMark = Double.parseDouble(markInfo[12]);
+                     double aWeight = Double.parseDouble(markInfo[13]);
+                     double culminatingMark = Double.parseDouble(markInfo[14]);
+                     double culminatingMaxMark = Double.parseDouble(markInfo[15]);
+                     double culminatingWeight = Double.parseDouble(markInfo[16]);
+
+                     Gui.Mark newMark = new Gui.Mark(courseCode, assignmentName, kMark, kMaxMark, kWeight, tMark, tMaxMark, tWeight, cMark, cMaxMark, cWeight, aMark, aMaxMark, aWeight, culminatingMark, culminatingMaxMark, culminatingWeight);
+                     markArr.add(newMark);
+                     System.out.println("added object to array: " + newMark);
+                 }else{
+                     System.out.println("something happened and it did NOT add properly.");
+                 }
+             }
+
+
+
+
+         }while(addedMark != null);
+
+
 
 
      }

@@ -13,8 +13,11 @@ public class ExportOrNot {
         if(export == JOptionPane.YES_OPTION){
             writeIntoFile();
             System.out.println("wrote to file");
+            System.exit(0);
+        }else if (export == JOptionPane.NO_OPTION){
+            System.out.println("Exit button was pressed and NOT canceled!");
+            System.exit(0);
         }
-        System.exit(0);
     }
 
 }

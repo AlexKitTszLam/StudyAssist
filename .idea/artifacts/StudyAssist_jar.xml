@@ -1,7 +1,7 @@
 <component name="ArtifactManager">
-  <artifact type="jar" name="CSGr12FinalProject:jar">
-    <output-path>$PROJECT_DIR$/out/artifacts/CSGr12FinalProject_jar</output-path>
-    <root id="archive" name="CSGr12FinalProject.jar">
+  <artifact type="jar" name="StudyAssist:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/StudyAssist_jar</output-path>
+    <root id="archive" name="StudyAssist.jar">
       <element id="directory" name="META-INF">
         <element id="file-copy" path="$PROJECT_DIR$/META-INF/MANIFEST.MF" />
       </element>

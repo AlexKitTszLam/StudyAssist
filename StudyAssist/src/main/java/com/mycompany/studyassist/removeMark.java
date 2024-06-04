@@ -17,6 +17,7 @@ public class removeMark { //given the course code nd name of assignment, it dele
                     if (mark.getCourseCode().equalsIgnoreCase(courseCodeTextField.getText()) && mark.getAssignmentName().equalsIgnoreCase(nameTextField.getText())) {
                         markArr.remove(mark);
                         System.out.println("removed mark?");
+                        JOptionPane.showMessageDialog(null, "Deleted mark!", "uh", JOptionPane.INFORMATION_MESSAGE);
                         break;
                     }
                 }

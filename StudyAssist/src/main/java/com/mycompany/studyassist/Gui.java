@@ -760,6 +760,7 @@ public class Gui extends javax.swing.JFrame {
             arrayAdder();
         } catch (IOException e) {
             throw new RuntimeException(e);
+
         }
     }
     

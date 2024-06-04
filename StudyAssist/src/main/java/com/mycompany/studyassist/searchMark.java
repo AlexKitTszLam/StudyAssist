@@ -3,7 +3,6 @@ import javax.swing.*;
 import java.io.IOException;
 import java.util.ArrayList;
 import static com.mycompany.studyassist.Gui.*;
-import static com.mycompany.studyassist.importExportMarks.writer;
 
 //Allow for the searching of marks.
 //array is called markArr

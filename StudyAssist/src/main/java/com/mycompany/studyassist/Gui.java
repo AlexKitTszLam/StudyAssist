@@ -476,35 +476,75 @@ public class Gui extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void courseAverageButtonActionPerformed(ActionEvent evt) {
+        // Define variables and get the course average that need to be searched
         String course = courseCodeTextField.getText();
         double dailyMark = 0;
 	double culminatingMark = 0;
         double dailyWeight = 0;
         double culminatingWeight = 0;
+        // To check if the course was found in the array
+        boolean found = false;
+        String text = "";
         
         // Average Calculation when assuming the ktca sections are weighted equally
+        // Loop through the array list to calculate the weighted marks and weights
         for (Mark item : markArr) {
+            /// Compare course codes to find the matching course
             String courseCode = item.getCourseCode();
             if (course.equals(courseCode)) {
+                found = true;
+                // Accumulate the weighted marks and weights 
 		dailyMark = dailyMark + item.getKMark() / item.getKMaxMark() * item.getKWeight();
 		dailyMark = dailyMark + item.getTMark() / item.getTMaxMark() * item.getTWeight();
 		dailyMark = dailyMark + item.getCMark() / item.getCMaxMark() * item.getCWeight();
 		dailyMark = dailyMark + item.getAMark() / item.getAMaxMark() * item.getAWeight();
                 dailyWeight = dailyWeight + item.getKWeight() + item.getTWeight() + item.getCWeight() + item.getAWeight();
-                 
 		culminatingMark = culminatingMark + item.getCulminatingMark() / item.getCulminatingMaxMark() * item.getCulminatingWeight();
                 culminatingWeight = culminatingWeight + item.getCulminatingWeight();
 		}
 	}
+        
+        // Calculate the averages if the weights are valid
         double dailyAverage = dailyMark / dailyWeight * 100;
         double culminatingAverage = culminatingMark / culminatingWeight * 100;
         double courseAverage = dailyAverage * 0.7 + culminatingAverage * 0.3;
-        display.setText(String.format("Course Code: %s\nDaily Average: %.1f%%\nCulminating Average: %.1f%%\nCourse Average: %.1f%%",
-                        course,dailyAverage, culminatingAverage,courseAverage));
+        
+        // Display a message if the course was not found
+        if (!found) {
+            display.setText("The course is not found.");
+            return;
+        }
+        
+        // Check for invalid weights and display according messages
+        if (dailyWeight <= 0 || culminatingWeight <= 0){
+            if (dailyWeight <= 0){
+                text += "You don't have any assignments with weightings in KTCA.\n";
+                text += String.format("Course Code: %s\nDaily Average: N/A\nCulminating Average: %.1f%%\nCourse Average: %.1f%%",
+                course, culminatingAverage,culminatingAverage);
+            }
+            if (culminatingWeight <= 0){
+                text += "You don't have any assignments with culminating weightings.\n";
+                text += String.format("Course Code: %s\nDaily Average: %.1f%%\nCulminating Average: N/A\nCourse Average: %.1f%%",
+                course,dailyAverage, dailyAverage);
+            }
+            if (dailyWeight <= 0 && culminatingWeight <= 0){
+                text += "None of your assignments have any weightings. Average is not applicable.";
+            }
+        } else {
+            // Display the calculated averages if weights are valid
+            text += String.format("Course Code: %s\nDaily Average: %.1f%%\nCulminating Average: %.1f%%\nCourse Average: %.1f%%",
+                    course,dailyAverage, culminatingAverage,courseAverage);
+        }        
+        
+        // Display the result text
+        display.setText(text);
     }
 
     private void displayMarkButtonActionPerformed(ActionEvent evt) {
+        // Define a beginning text
         String text = "All Existing Assignments:\n";
+        
+        // Add all attributes of each mark into the text in clear format
         for (Mark item : markArr){
             text += "Course code: " + item.getCourseCode() + " ";
             text += "Assignment name: " + item.getAssignmentName() + "\n";
@@ -515,43 +555,105 @@ public class Gui extends javax.swing.JFrame {
             text += String.format("Culminating - Mark: %.1f, Max Mark: %.1f, Weight: %.1f\n", item.getCulminatingMark(), item.getCulminatingMaxMark(), item.getCulminatingWeight());
             text += "\n";
         }
+        // Display text
         display.setText(text);
     }
 
     private void addMarkButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addMarkButtonActionPerformed
         // TODO add your handling code here:
+        // Report error and return if any field is empty
+        if (courseCodeTextField.getText().isEmpty() || nameTextField.getText().isEmpty() || givenKnowledgeTextField.getText().isEmpty() || maxKnowledgeTextField.getText().isEmpty() 
+            || weightKnowledgeTextField.getText().isEmpty() || givenThinkingTextField.getText().isEmpty() || maxThinkingTextField.getText().isEmpty() || weightThinkingTextField.getText().isEmpty()
+            || givenCommunicationTextField.getText().isEmpty() || maxCommunicationTextField.getText().isEmpty() || weightCommunicationTextField.getText().isEmpty() || givenApplicationTextField.getText().isEmpty()
+            || maxApplicationTextField.getText().isEmpty() || weightApplicationTextField.getText().isEmpty() || givenCulminatingTextField.getText().isEmpty() || maxCulminatingTextField.getText().isEmpty()
+            || weightCulminatingTextField.getText().isEmpty()) {
+            display.setText("You left a piece of information empty. \nSet the weight as 0 if you don't have a mark for any sections on the assignment.");
+            return;
+        }
+        // Trim and get the course code and assignment name
         String courseCode = courseCodeTextField.getText().trim();
-	
 	String assignmentName = nameTextField.getText().trim();
         
-	double kMark = Double.parseDouble(givenKnowledgeTextField.getText().trim());
-	double kMaxMark = Double.parseDouble(maxKnowledgeTextField.getText().trim());
-	double kWeight = Double.parseDouble(weightKnowledgeTextField.getText().trim());
+        // Check if course code or assignment name contains only numbers
+        if (stringCheck(courseCode) || stringCheck(assignmentName)){
+            display.setText("Your course code or assignment name cannot be pure numbers.");
+            return;
+        }
+        
+        // Check if course code or assignment name contains only numbers
+        if (assignmentExists(courseCode, assignmentName)){
+            display.setText("The assignment already exists in this course.");
+            return;
+        }
+        
+        try{
+            // Parse and validate each section's inputs
+            double kMark = Double.parseDouble(givenKnowledgeTextField.getText().trim());
+            double kMaxMark = Double.parseDouble(maxKnowledgeTextField.getText().trim());
+            double kWeight = Double.parseDouble(weightKnowledgeTextField.getText().trim());
 		
-	double tMark = Double.parseDouble(givenThinkingTextField.getText().trim());
-	double tMaxMark = Double.parseDouble(maxThinkingTextField.getText().trim());
-	double tWeight = Double.parseDouble(weightThinkingTextField.getText().trim());
+            if (kMark < 0 || kWeight < 0 || kMaxMark < kMark) {
+                display.setText("Invalid input for Knowledge section. Ensure marks are non-negative, weights are non-negative, and max marks are greater than or equal to given marks.");
+                return;
+            }
+        
+            double tMark = Double.parseDouble(givenThinkingTextField.getText().trim());
+            double tMaxMark = Double.parseDouble(maxThinkingTextField.getText().trim());
+            double tWeight = Double.parseDouble(weightThinkingTextField.getText().trim());
 		
-	double cMark = Double.parseDouble(givenCommunicationTextField.getText().trim());
-	double cMaxMark = Double.parseDouble(maxCommunicationTextField.getText().trim());
-	double cWeight = Double.parseDouble(weightCommunicationTextField.getText().trim());
+            if (tMark < 0 || tWeight < 0 || tMaxMark < tMark) {
+                display.setText("Invalid input for Thinking section. Ensure marks are non-negative, weights are non-negative, and max marks are greater than or equal to given marks.");
+                return;
+            }
+        
+            double cMark = Double.parseDouble(givenCommunicationTextField.getText().trim());
+            double cMaxMark = Double.parseDouble(maxCommunicationTextField.getText().trim());
+            double cWeight = Double.parseDouble(weightCommunicationTextField.getText().trim());
 		
-	double aMark = Double.parseDouble(givenApplicationTextField.getText().trim());
-	double aMaxMark = Double.parseDouble(maxApplicationTextField.getText().trim());
-	double aWeight = Double.parseDouble(weightApplicationTextField.getText().trim());
+            if (cMark < 0 || cWeight < 0 || cMaxMark < tMark) {
+                display.setText("Invalid input for Communication section. Ensure marks are non-negative, weights are non-negative, and max marks are greater than or equal to given marks.");
+                return;
+            }
+        
+            double aMark = Double.parseDouble(givenApplicationTextField.getText().trim());
+            double aMaxMark = Double.parseDouble(maxApplicationTextField.getText().trim());
+            double aWeight = Double.parseDouble(weightApplicationTextField.getText().trim());
 		
+            if (aMark < 0 || aWeight < 0 || aMaxMark < tMark) {
+                display.setText("Invalid input for Application section. Ensure marks are non-negative, weights are non-negative, and max marks are greater than or equal to given marks.");
+                return;
+            }
                
-	double culminatingMark = Double.parseDouble(givenCulminatingTextField.getText().trim());
-	double culminatingMaxMark = Double.parseDouble(maxCulminatingTextField.getText().trim());
-	double culminatingWeight = Double.parseDouble(weightCulminatingTextField.getText().trim());
+            double culminatingMark = Double.parseDouble(givenCulminatingTextField.getText().trim());
+            double culminatingMaxMark = Double.parseDouble(maxCulminatingTextField.getText().trim());
+            double culminatingWeight = Double.parseDouble(weightCulminatingTextField.getText().trim());
                 
-	Mark newMark = new Mark(courseCode, assignmentName, kMark, kMaxMark, kWeight, tMark, tMaxMark, tWeight, cMark, 
+            if (culminatingMark < 0 || culminatingWeight < 0 || culminatingMaxMark < tMark) {
+                display.setText("Invalid input for Culminating section. Ensure marks are non-negative, weights are non-negative, and max marks are greater than or equal to given marks.");
+                return;
+            }
+             
+            // Create a new Mark object with the validated inputs
+            Mark newMark = new Mark(courseCode, assignmentName, kMark, kMaxMark, kWeight, tMark, tMaxMark, tWeight, cMark, 
 				cMaxMark, cWeight, aMark, aMaxMark, aWeight, culminatingMark, culminatingMaxMark, culminatingWeight);
 		
-	display.setText(newMark.toString());
-	markArr.add(newMark);
-	for (Mark item : markArr) {
-            System.out.println(item);
+            // Prepare the result text
+            String text = "You added an assignment:\n";
+            text += "Course code: " + newMark.getCourseCode() + " ";
+            text += "Assignment name: " + newMark.getAssignmentName() + "\n";
+            text += String.format("Knowledge - Mark: %.1f, Max Mark: %.1f, Weight: %.1f\n", newMark.getKMark(), newMark.getKMaxMark(), newMark.getKWeight());
+            text += String.format("Thinking - Mark: %.1f, Max Mark: %.1f, Weight: %.1f\n", newMark.getTMark(), newMark.getTMaxMark(), newMark.getTWeight());
+            text += String.format("Communication - Mark: %.1f, Max Mark: %.1f, Weight: %.1f\n", newMark.getCMark(), newMark.getCMaxMark(), newMark.getCWeight());
+            text += String.format("Application - Mark: %.1f, Max Mark: %.1f, Weight: %.1f\n", newMark.getAMark(), newMark.getAMaxMark(), newMark.getAWeight());
+            text += String.format("Culminating - Mark: %.1f, Max Mark: %.1f, Weight: %.1f\n", newMark.getCulminatingMark(), newMark.getCulminatingMaxMark(), newMark.getCulminatingWeight());
+            
+            // Display the result text and add mark to the array
+            display.setText(text);
+            markArr.add(newMark);
+       
+        } catch (NumberFormatException e) {
+            // Display error if parsing fails
+            display.setText("You must enter a number for the marks and weights.");
 	}
     }//GEN-LAST:event_addMarkButtonActionPerformed
 
@@ -578,7 +680,6 @@ public class Gui extends javax.swing.JFrame {
                 allCourses.add(course);
             }
         }
-        System.out.println(allCourses);
         
         // Average Calculation when assuming the ktca sections are weighted equally
         for (String course : allCourses) {
@@ -694,6 +795,63 @@ public class Gui extends javax.swing.JFrame {
         Collections.swap(topAverages, i + 1, high);
         Collections.swap(topCourses, i + 1, high);
         return i + 1;
+    }
+    
+    // Method for string error checking
+    public static boolean stringCheck(String str) {
+        // Check for empty string, true represent the string has errors
+	if (str == null || str.isEmpty()) {
+	    return true;
+	}
+        // Try to parse the string as an integer
+        try {
+            Integer.parseInt(str);
+            return true;
+        } catch (NumberFormatException e) {
+        // If parse integer is false, try parse double
+            try {
+                Double.parseDouble(str);
+                return true;
+            } catch (NumberFormatException ex) {
+                // Return false for no errors found
+                return false;
+            }
+        }
+    }
+	
+    // Error check for if the user's input assignment already exists
+    public static boolean assignmentExists(String code, String name) {
+        // Loop through each item in the array list
+        for (int i = 0; i < markArr.size(); i++) {
+            Mark item = markArr.get(i);
+            
+            // Check if there are any matching names
+            if (item.getCourseCode().equalsIgnoreCase(code) && item.getAssignmentName().equalsIgnoreCase(name)) {
+                return true;
+            }
+        }
+        // Return false as the input does not match any existing names
+        return false;
+    }
+        
+    // Method to check errors in doubles
+    public static boolean invalidDecimal(double num) {
+    	// Find the index of the decimal point
+    	int dotIndex = String.valueOf(num).indexOf("."); 
+    	
+    	// Check for negative, true represent an error has occurred
+    	if (num < 0) {
+            return true;
+    	}
+        
+    	// Exit case for when there is no decimal digits
+        if (dotIndex == -1) {
+            return false;
+        }
+     
+        // Calculate the number of characters after the decimal point and compare 
+        int decimalCount = String.valueOf(num).length() - dotIndex - 1;
+        return decimalCount > 2;
     }
     
     /**

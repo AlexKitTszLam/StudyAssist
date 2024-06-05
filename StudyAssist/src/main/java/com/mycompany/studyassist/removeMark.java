@@ -10,7 +10,7 @@ public class removeMark { //given the course code nd name of assignment, it dele
         //Makes sure that the person has the correct information needed to delete the mark
         System.out.println("RemoveMarkButton was pressed");
         if (!courseCodeTextField.getText().equalsIgnoreCase("") && !nameTextField.getText().equalsIgnoreCase("")) {
-            //asks if the persona intended to actually delete it.
+            //asks if the person intended to actually delete it.
             int doubleCheck = JOptionPane.YES_NO_OPTION;
             if (doubleCheck == JOptionPane.YES_OPTION) {
                 for (Mark mark : markArr) {

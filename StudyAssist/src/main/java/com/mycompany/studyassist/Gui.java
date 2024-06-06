@@ -681,6 +681,11 @@ public class Gui extends javax.swing.JFrame {
             }
         }
         
+        if (allCourses.size() < 0){
+            display.setText("You don't have any courses yet. Try again later.");
+            return;
+        }
+        
         // Average Calculation when assuming the ktca sections are weighted equally
         for (String course : allCourses) {
             double dailyMark = 0;
@@ -736,6 +741,11 @@ public class Gui extends javax.swing.JFrame {
             if (!topCourses.contains(course)){
                 topCourses.add(course);
             }
+        }
+        
+        if (topCourses.size() < 6){
+            display.setText("You don't have six courses yet. Try again later.");
+            return;
         }
         
         // Average Calculation when assuming the ktca sections are weighted equally

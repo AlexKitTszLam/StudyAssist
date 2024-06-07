@@ -9,4 +9,15 @@ It should be able to calculate the course and grade average
 It should be able to calculate the grade of each "part" (ex, communication, application) by being given the given amount of points and total marts.
 It should allow for freely adding/removing grades.
 
-I SHOULD MAKE IT SO THAT CLICKING EXIT ASKS IF YOU WANT TO SAVE IT TO THE FIRST DOCUMENT.
+Instructions to use the program:
+Add Mark: All the fields need to be filled. The course code and assignment name cannot only contain numbers. The given marks should not be higher than the maximum marks. All of the marks and weights should be 0 or a positive number. 
+If you want one section of the assignments marks to be ignored, set the weight to 0. Recommend to set the given marks and maxmimum marks also as 0 for clarity when you read the data.
+Once all requirements are met, click the button to add the mark into the data.
+
+Display Mark: Click to display all inputed marks. Error message will appear if no marks are present when the button is clicked.
+
+Course Average: Fill in the course field for which course's average you want to see. Calculations are set to that KTCA sections are weighted equally toward the 70% of your daily marks, and culminating counts toward 30% of the overall marks. When a course do not have KTCA or culminating marks or weights, the portion of marks that is available will become 100% of the overall marks. No averages will be available if no weights exists for the course.
+
+Overall Average: Click to display every course average. A course with no weighted assignments will be marked with an course average of zero. You may remove that course or assignment if you want a more accurate overall average. 
+
+Top 6 Average: Click to display the top 6 course average. A minimum of 6 courses are required for the average to be calculated. A course with no weighted assignments will be marked with an course average of zero. 

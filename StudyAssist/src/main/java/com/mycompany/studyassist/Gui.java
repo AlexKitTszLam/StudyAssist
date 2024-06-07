@@ -550,6 +550,12 @@ public class Gui extends javax.swing.JFrame {
         // Define a beginning text
         String text = "All Existing Assignments:\n";
         
+        // Error check for when the array list is empty
+        if (markArr.size() <= 0){
+            display.setText("You have no courses and assignments in the database yet.");
+            return;
+        }
+        
         // Add all attributes of each mark into the text in clear format
         for (Mark item : markArr){
             text += "Course code: " + item.getCourseCode() + " ";

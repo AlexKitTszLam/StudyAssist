@@ -527,17 +527,21 @@ public class Gui extends javax.swing.JFrame {
                 text += String.format("Course Code: %s\nDaily Average: %.1f%%\nCulminating Average: N/A\nCourse Average: %.1f%%",
                 course,dailyAverage, dailyAverage);
             }
-            if (dailyWeight <= 0 && culminatingWeight <= 0){
-                text += "None of your assignments have any weightings. Average is not applicable.";
-            }
         } else {
             // Display the calculated averages if weights are valid
             text += String.format("Course Code: %s\nDaily Average: %.1f%%\nCulminating Average: %.1f%%\nCourse Average: %.1f%%",
                     course,dailyAverage, culminatingAverage,courseAverage);
-        }        
+        }       
         
         // Display the result text
-        display.setText(text);
+        if (dailyWeight <= 0 && culminatingWeight <= 0){
+            display.setText("None of your assignments have any weightings. Average is not applicable.");
+        } else {
+            display.setText(text);
+        }
+        
+        
+        
     }
 
     private void displayMarkButtonActionPerformed(ActionEvent evt) {
@@ -593,7 +597,7 @@ public class Gui extends javax.swing.JFrame {
             double kWeight = Double.parseDouble(weightKnowledgeTextField.getText().trim());
 		
             if (kMark < 0 || kWeight < 0 || kMaxMark < kMark) {
-                display.setText("Invalid input for Knowledge section. Ensure marks are non-negative, weights are non-negative, and max marks are greater than or equal to given marks.");
+                display.setText("Invalid input for Knowledge section. Ensure marks are non-negative,\nweights are non-negative, and max marks are greater than or equal to given marks.");
                 return;
             }
         
@@ -602,7 +606,7 @@ public class Gui extends javax.swing.JFrame {
             double tWeight = Double.parseDouble(weightThinkingTextField.getText().trim());
 		
             if (tMark < 0 || tWeight < 0 || tMaxMark < tMark) {
-                display.setText("Invalid input for Thinking section. Ensure marks are non-negative, weights are non-negative, and max marks are greater than or equal to given marks.");
+                display.setText("Invalid input for Thinking section. Ensure marks are non-negative,\nweights are non-negative, and max marks are greater than or equal to given marks.");
                 return;
             }
         
@@ -610,8 +614,8 @@ public class Gui extends javax.swing.JFrame {
             double cMaxMark = Double.parseDouble(maxCommunicationTextField.getText().trim());
             double cWeight = Double.parseDouble(weightCommunicationTextField.getText().trim());
 		
-            if (cMark < 0 || cWeight < 0 || cMaxMark < tMark) {
-                display.setText("Invalid input for Communication section. Ensure marks are non-negative, weights are non-negative, and max marks are greater than or equal to given marks.");
+            if (cMark < 0 || cWeight < 0 || cMaxMark < cMark) {
+                display.setText("Invalid input for Communication section. Ensure marks are non-negative,\nweights are non-negative, and max marks are greater than or equal to given marks.");
                 return;
             }
         
@@ -619,8 +623,8 @@ public class Gui extends javax.swing.JFrame {
             double aMaxMark = Double.parseDouble(maxApplicationTextField.getText().trim());
             double aWeight = Double.parseDouble(weightApplicationTextField.getText().trim());
 		
-            if (aMark < 0 || aWeight < 0 || aMaxMark < tMark) {
-                display.setText("Invalid input for Application section. Ensure marks are non-negative, weights are non-negative, and max marks are greater than or equal to given marks.");
+            if (aMark < 0 || aWeight < 0 || aMaxMark < aMark) {
+                display.setText("Invalid input for Application section. Ensure marks are non-negative,\nweights are non-negative, and max marks are greater than or equal to given marks.");
                 return;
             }
                
@@ -628,8 +632,8 @@ public class Gui extends javax.swing.JFrame {
             double culminatingMaxMark = Double.parseDouble(maxCulminatingTextField.getText().trim());
             double culminatingWeight = Double.parseDouble(weightCulminatingTextField.getText().trim());
                 
-            if (culminatingMark < 0 || culminatingWeight < 0 || culminatingMaxMark < tMark) {
-                display.setText("Invalid input for Culminating section. Ensure marks are non-negative, weights are non-negative, and max marks are greater than or equal to given marks.");
+            if (culminatingMark < 0 || culminatingWeight < 0 || culminatingMaxMark < culminatingMark) {
+                display.setText("Invalid input for Culminating section. Ensure marks are non-negative,\nweights are non-negative, and max marks are greater than or equal to given marks.");
                 return;
             }
              
@@ -669,11 +673,13 @@ public class Gui extends javax.swing.JFrame {
 
     private void overallAverageButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_overallAverageButtonActionPerformed
         // TODO add your handling code here:
+        // Define variables
         ArrayList<String> allCourses = new ArrayList<>();
         ArrayList<Double> allAverages = new ArrayList<>();
         double overallAverage = 0;
         String text = "";
         
+        // Add all distinct course codes into an array list
         for (Mark item : markArr){
             String course = item.getCourseCode();
             if (!allCourses.contains(course)){
@@ -681,7 +687,8 @@ public class Gui extends javax.swing.JFrame {
             }
         }
         
-        if (allCourses.size() < 0){
+        // Error check for if no courses are present
+        if (allCourses.size() <= 0){
             display.setText("You don't have any courses yet. Try again later.");
             return;
         }
@@ -692,6 +699,8 @@ public class Gui extends javax.swing.JFrame {
             double culminatingMark = 0;
             double dailyWeight = 0;
             double culminatingWeight = 0;
+            
+            // Calculate marks and weights for each course
             for (Mark item : markArr){
                 if (course.equals(item.getCourseCode())) {
 		dailyMark = dailyMark + item.getKMark() / item.getKMaxMark() * item.getKWeight();
@@ -704,23 +713,47 @@ public class Gui extends javax.swing.JFrame {
                 culminatingWeight = culminatingWeight + item.getCulminatingWeight();
 		}
             }
+            
+            // Calculate averages
             double dailyAverage = dailyMark / dailyWeight * 100;
             double culminatingAverage = culminatingMark / culminatingWeight * 100;
             double courseAverage = dailyAverage * 0.7 + culminatingAverage * 0.3;
-            allAverages.add(courseAverage);
+            
+            // Check for zero weights and report errors, add available averages into the array list
+            if (dailyWeight <= 0 || culminatingWeight <= 0) {
+                if (dailyWeight <= 0 && culminatingWeight <= 0){
+                    text += "None of your assignments in course code" + course + " have any weightings. Average set to 0.\n";
+                    text += "\n";
+                    allAverages.add(0.);
+                } else if (dailyWeight <= 0) {
+                    text += "Warning: Course code: " + course + " has no assignments with daily weightings.\nThe culminating average is used as your overall average.\n";
+                    text += "\n";
+                    allAverages.add(culminatingAverage);
+                } else if (culminatingWeight <= 0) {
+                    text += "Warning: Course code: " + course + " has no assignments with culminating weightings.\nThe daily average is used as your overall average.\n";
+                    text += "\n";
+                    allAverages.add(dailyAverage);
+                }
+                
+            } else {
+                allAverages.add(courseAverage);
+            }
 	}
         
+        // Calculate overall average
         for (double average : allAverages){
             overallAverage += average;
         }
         overallAverage =  overallAverage / allCourses.size();
         
+        // Write result display text
         for (int i = 0; i < allCourses.size(); i++){
             text += "Course code: " + allCourses.get(i) + " ";
-            text += String.format("Course Average: %.1f\n", allAverages.get(i));
+            text += String.format("Course Average: %.1f%%\n", allAverages.get(i));
         }
-        text += String.format("Overall Average: %.1f\n", overallAverage);
+        text += String.format("Overall Average: %.1f%%\n", overallAverage);
         
+        // Display results
         display.setText(text);
     }//GEN-LAST:event_overallAverageButtonActionPerformed
 

@@ -518,12 +518,14 @@ public class Gui extends javax.swing.JFrame {
         // Check for invalid weights and display according messages
         if (dailyWeight <= 0 || culminatingWeight <= 0){
             if (dailyWeight <= 0){
-                text += "You don't have any assignments with weightings in KTCA.\n";
+                text += "You don't have any assignments with weightings in KTCA.\nThe culminating average is used as your overall average.";
+                text += "\n";
                 text += String.format("Course Code: %s\nDaily Average: N/A\nCulminating Average: %.1f%%\nCourse Average: %.1f%%",
                 course, culminatingAverage,culminatingAverage);
             }
             if (culminatingWeight <= 0){
-                text += "You don't have any assignments with culminating weightings.\n";
+                text += "You don't have any assignments with culminating weightings.\nThe daily average is used as your overall average.";
+                text += "\n";
                 text += String.format("Course Code: %s\nDaily Average: %.1f%%\nCulminating Average: N/A\nCourse Average: %.1f%%",
                 course,dailyAverage, dailyAverage);
             }
@@ -722,19 +724,18 @@ public class Gui extends javax.swing.JFrame {
             // Check for zero weights and report errors, add available averages into the array list
             if (dailyWeight <= 0 || culminatingWeight <= 0) {
                 if (dailyWeight <= 0 && culminatingWeight <= 0){
-                    text += "None of your assignments in course code" + course + " have any weightings. Average set to 0.\n";
+                    text += "None of your assignments in course code " + course + " have any weightings. Average set to 0.\n";
                     text += "\n";
                     allAverages.add(0.);
                 } else if (dailyWeight <= 0) {
-                    text += "Warning: Course code: " + course + " has no assignments with daily weightings.\nThe culminating average is used as your overall average.\n";
+                    text += "Course code: " + course + " has no assignments with daily weightings.\nThe culminating average is used as your overall average.\n";
                     text += "\n";
                     allAverages.add(culminatingAverage);
                 } else if (culminatingWeight <= 0) {
-                    text += "Warning: Course code: " + course + " has no assignments with culminating weightings.\nThe daily average is used as your overall average.\n";
+                    text += "Course code: " + course + " has no assignments with culminating weightings.\nThe daily average is used as your overall average.\n";
                     text += "\n";
                     allAverages.add(dailyAverage);
-                }
-                
+                }      
             } else {
                 allAverages.add(courseAverage);
             }
@@ -764,11 +765,13 @@ public class Gui extends javax.swing.JFrame {
 
     private void top6AverageButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_top6AverageButtonActionPerformed
         // TODO add your handling code here:
+        // Define some variables and start two new empty array lists 
         topCourses = new ArrayList<>();
         topAverages = new ArrayList<>();
         double overallAverage = 0;
         String text = "";
         
+        // Add each distinct course code into the array list
         for (Mark item : markArr){
             String course = item.getCourseCode();
             if (!topCourses.contains(course)){
@@ -776,6 +779,7 @@ public class Gui extends javax.swing.JFrame {
             }
         }
         
+        // Report error and return if less than six courses are entered
         if (topCourses.size() < 6){
             display.setText("You don't have six courses yet. Try again later.");
             return;
@@ -787,6 +791,8 @@ public class Gui extends javax.swing.JFrame {
             double culminatingMark = 0;
             double dailyWeight = 0;
             double culminatingWeight = 0;
+            
+            // Calculate the marks and weights of each course
             for (Mark item : markArr){
                 if (course.equals(item.getCourseCode())) {
 		dailyMark = dailyMark + item.getKMark() / item.getKMaxMark() * item.getKWeight();
@@ -799,46 +805,92 @@ public class Gui extends javax.swing.JFrame {
                 culminatingWeight = culminatingWeight + item.getCulminatingWeight();
 		}
             }
+            
+            // Calculate averages
             double dailyAverage = dailyMark / dailyWeight * 100;
             double culminatingAverage = culminatingMark / culminatingWeight * 100;
             double courseAverage = dailyAverage * 0.7 + culminatingAverage * 0.3;
-            topAverages.add(courseAverage);
+            
+            // Check for zero weights and report errors, add available averages into the array list
+            if (dailyWeight <= 0 || culminatingWeight <= 0) {
+                if (dailyWeight <= 0 && culminatingWeight <= 0){
+                    text += "None of your assignments in course code " + course + " have any weightings. Average set to 0.\n";
+                    text += "\n";
+                    topAverages.add(0.);
+                } else if (dailyWeight <= 0) {
+                    text += "Course code: " + course + " has no assignments with daily weightings.\nThe culminating average is used as your overall average.\n";
+                    text += "\n";
+                    topAverages.add(culminatingAverage);
+                } else if (culminatingWeight <= 0) {
+                    text += "Course code: " + course + " has no assignments with culminating weightings.\nThe daily average is used as your overall average.\n";
+                    text += "\n";
+                    topAverages.add(dailyAverage);
+                }      
+            } else {
+                topAverages.add(courseAverage);
+            }
 	}
         
+        // Sort courses based on averages
+        recursiveQuickSort(0, topAverages.size() - 1);
+        
+        // Prepare text for the top six courses and their averages
         for (int i = 0; i < 6; i++){
             overallAverage += topAverages.get(i);
             text += "Course code: " + topCourses.get(i) + " ";
-            text += String.format("Course Average: %.1f\n", topAverages.get(i));
+            text += String.format("Course Average: %.1f%%\n", topAverages.get(i));
         }
         
         overallAverage =  overallAverage / 6;
-        text += String.format("Overall Average: %.1f\n", overallAverage);
+        text += String.format("Overall Average: %.1f%%\n", overallAverage);
         
+        // Display final results
         display.setText(text);
     }//GEN-LAST:event_top6AverageButtonActionPerformed
-
+    
+    // Recursive quicksort method to sort elements between indexes
     private void recursiveQuickSort(int low, int high) {
+        // To check that there are more than one elements being sorted
         if (low < high) {
-            int pi = partition(low, high);
-            recursiveQuickSort(low, pi - 1);
-            recursiveQuickSort(pi + 1, high);
+            
+            // Divide the array and get a pivot index
+            int pivot = partition(low, high);
+            
+            // Recursively divide and conquer to sort the elements before and after the partition
+            recursiveQuickSort(low, pivot - 1);
+            recursiveQuickSort(pivot + 1, high);
         }
     }
-
+    
+    // Partition method to rearrange elements around the pivot
     private int partition(int low, int high) {
+        // Choose the pivot element from the end of the array
         double pivot = topAverages.get(high);
-        int i = low - 1;
+        // Index of the smaller element
+        int i = low - 1; 
+    
+        // Iterate through the array and rearrange elements based on the pivot
         for (int j = low; j < high; j++) {
+            
+            // If the current element is greater than the pivot
             if (topAverages.get(j) > pivot) {
-                i++;
+                i++; 
+                
+                // Swap elements in topAverages
                 Collections.swap(topAverages, i, j);
+                
+                // Swap corresponding elements in topCourses
                 Collections.swap(topCourses, i, j);
             }
         }
-        Collections.swap(topAverages, i + 1, high);
-        Collections.swap(topCourses, i + 1, high);
-        return i + 1;
-    }
+        
+    // Swap the pivot element to its correct position
+    Collections.swap(topAverages, i + 1, high);
+    Collections.swap(topCourses, i + 1, high);
+    
+    // Return the partitioning index
+    return i + 1;
+}
     
     // Method for string error checking
     public static boolean stringCheck(String str) {

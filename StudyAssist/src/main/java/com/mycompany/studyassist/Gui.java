@@ -4,22 +4,28 @@
  */
 package com.mycompany.studyassist;
 
+import javax.swing.*;
+
 import static com.mycompany.studyassist.ExportOrNot.ExportQuestionPopup;
 import static com.mycompany.studyassist.importExportMarks.arrayAdder;
 import static com.mycompany.studyassist.removeMark.removeThatMark;
 import static com.mycompany.studyassist.searchMark.markFinder;
 
+import java.awt.*;
 import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
  * @author alex_
  */
-public class Gui extends javax.swing.JFrame {
+public class Gui extends JFrame {
     static ArrayList<Mark> markArr = new ArrayList<>();
     ArrayList<String> topCourses;
     ArrayList<Double> topAverages;
@@ -39,73 +45,73 @@ public class Gui extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel1 = new javax.swing.JLabel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        display = new javax.swing.JTextArea();
-        courseCodeField = new javax.swing.JScrollPane();
-        courseCodeTextField = new javax.swing.JTextArea();
-        jLabel2 = new javax.swing.JLabel();
-        nameField = new javax.swing.JScrollPane();
-        nameTextField = new javax.swing.JTextArea();
-        jLabel3 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
-        givenThinkingField = new javax.swing.JScrollPane();
-        givenThinkingTextField = new javax.swing.JTextArea();
-        jLabel7 = new javax.swing.JLabel();
-        givenKnowleadgeField = new javax.swing.JScrollPane();
-        givenKnowledgeTextField = new javax.swing.JTextArea();
-        jLabel8 = new javax.swing.JLabel();
-        maxThinkingFIeld = new javax.swing.JScrollPane();
-        maxThinkingTextField = new javax.swing.JTextArea();
-        jLabel9 = new javax.swing.JLabel();
-        maxKnowleadgeField = new javax.swing.JScrollPane();
-        maxKnowledgeTextField = new javax.swing.JTextArea();
-        maxCommunicationField = new javax.swing.JScrollPane();
-        maxCommunicationTextField = new javax.swing.JTextArea();
-        jLabel10 = new javax.swing.JLabel();
-        jScrollPane11 = new javax.swing.JScrollPane();
-        givenCommunicationTextField = new javax.swing.JTextArea();
-        jLabel11 = new javax.swing.JLabel();
-        jLabel12 = new javax.swing.JLabel();
-        jScrollPane12 = new javax.swing.JScrollPane();
-        maxApplicationTextField = new javax.swing.JTextArea();
-        givenApplicationField = new javax.swing.JScrollPane();
-        givenApplicationTextField = new javax.swing.JTextArea();
-        jLabel13 = new javax.swing.JLabel();
-        addMarkButton = new java.awt.Button();
-        searchMarkButton = new java.awt.Button();
-        overallAverageButton = new java.awt.Button();
-        top6AverageButton = new java.awt.Button();
-        removeMarkButton = new java.awt.Button();
-        exitButton = new java.awt.Button();
-        jLabel14 = new javax.swing.JLabel();
-        maxKnowleadgeField1 = new javax.swing.JScrollPane();
-        weightKnowledgeTextField = new javax.swing.JTextArea();
-        maxCommunicationField1 = new javax.swing.JScrollPane();
-        weightApplicationTextField = new javax.swing.JTextArea();
-        jLabel15 = new javax.swing.JLabel();
-        jLabel16 = new javax.swing.JLabel();
-        weightCommunicationField = new javax.swing.JScrollPane();
-        weightCommunicationTextField = new javax.swing.JTextArea();
-        jLabel17 = new javax.swing.JLabel();
-        maxThinkingFIeld1 = new javax.swing.JScrollPane();
-        weightThinkingTextField = new javax.swing.JTextArea();
-        courseAverageButton = new java.awt.Button();
-        displayMarkButton = new java.awt.Button();
-        maxCommunicationField2 = new javax.swing.JScrollPane();
-        maxCulminatingTextField = new javax.swing.JTextArea();
-        jLabel18 = new javax.swing.JLabel();
-        weightCommunicationField1 = new javax.swing.JScrollPane();
-        givenCulminatingTextField = new javax.swing.JTextArea();
-        jLabel19 = new javax.swing.JLabel();
-        weightCulminatingField = new javax.swing.JScrollPane();
-        weightCulminatingTextField = new javax.swing.JTextArea();
-        jLabel20 = new javax.swing.JLabel();
+        jLabel1 = new JLabel();
+        jScrollPane1 = new JScrollPane();
+        display = new JTextArea();
+        courseCodeField = new JScrollPane();
+        courseCodeTextField = new JTextArea();
+        jLabel2 = new JLabel();
+        nameField = new JScrollPane();
+        nameTextField = new JTextArea();
+        jLabel3 = new JLabel();
+        jLabel5 = new JLabel();
+        givenThinkingField = new JScrollPane();
+        givenThinkingTextField = new JTextArea();
+        jLabel7 = new JLabel();
+        givenKnowleadgeField = new JScrollPane();
+        givenKnowledgeTextField = new JTextArea();
+        jLabel8 = new JLabel();
+        maxThinkingFIeld = new JScrollPane();
+        maxThinkingTextField = new JTextArea();
+        jLabel9 = new JLabel();
+        maxKnowleadgeField = new JScrollPane();
+        maxKnowledgeTextField = new JTextArea();
+        maxCommunicationField = new JScrollPane();
+        maxCommunicationTextField = new JTextArea();
+        jLabel10 = new JLabel();
+        jScrollPane11 = new JScrollPane();
+        givenCommunicationTextField = new JTextArea();
+        jLabel11 = new JLabel();
+        jLabel12 = new JLabel();
+        jScrollPane12 = new JScrollPane();
+        maxApplicationTextField = new JTextArea();
+        givenApplicationField = new JScrollPane();
+        givenApplicationTextField = new JTextArea();
+        jLabel13 = new JLabel();
+        addMarkButton = new Button();
+        searchMarkButton = new Button();
+        overallAverageButton = new Button();
+        top6AverageButton = new Button();
+        removeMarkButton = new Button();
+        exitButton = new Button();
+        jLabel14 = new JLabel();
+        maxKnowleadgeField1 = new JScrollPane();
+        weightKnowledgeTextField = new JTextArea();
+        maxCommunicationField1 = new JScrollPane();
+        weightApplicationTextField = new JTextArea();
+        jLabel15 = new JLabel();
+        jLabel16 = new JLabel();
+        weightCommunicationField = new JScrollPane();
+        weightCommunicationTextField = new JTextArea();
+        jLabel17 = new JLabel();
+        maxThinkingFIeld1 = new JScrollPane();
+        weightThinkingTextField = new JTextArea();
+        courseAverageButton = new Button();
+        displayMarkButton = new Button();
+        maxCommunicationField2 = new JScrollPane();
+        maxCulminatingTextField = new JTextArea();
+        jLabel18 = new JLabel();
+        weightCommunicationField1 = new JScrollPane();
+        givenCulminatingTextField = new JTextArea();
+        jLabel19 = new JLabel();
+        weightCulminatingField = new JScrollPane();
+        weightCulminatingTextField = new JTextArea();
+        jLabel20 = new JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setFont(new java.awt.Font("Comic Sans MS", 0, 36)); // NOI18N
+        setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+        setFont(new Font("Comic Sans MS", 0, 36)); // NOI18N
 
-        jLabel1.setFont(new java.awt.Font("Comic Sans MS", 0, 36)); // NOI18N
+        jLabel1.setFont(new Font("Comic Sans MS", 0, 36)); // NOI18N
         jLabel1.setText("StudyAssist");
         jLabel1.setAlignmentY(0.0F);
         jLabel1.setAutoscrolls(true);
@@ -177,45 +183,45 @@ public class Gui extends javax.swing.JFrame {
         jLabel13.setText("Max Application");
 
         addMarkButton.setLabel("Add Mark");
-        addMarkButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        addMarkButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent evt) {
                 addMarkButtonActionPerformed(evt);
             }
         });
 
         searchMarkButton.setLabel("Search Mark");
-        searchMarkButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        searchMarkButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent evt) {
                 searchMarkButtonActionPerformed(evt);
             }
         });
 
         overallAverageButton.setLabel("Overall Average");
-        overallAverageButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        overallAverageButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent evt) {
                 overallAverageButtonActionPerformed(evt);
             }
         });
 
         top6AverageButton.setLabel("Top 6 Average");
-        top6AverageButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        top6AverageButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent evt) {
                 top6AverageButtonActionPerformed(evt);
             }
         });
 
         removeMarkButton.setLabel("Remove Mark");
-        removeMarkButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        removeMarkButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent evt) {
                 removeMarkButtonActionPerformed(evt);
             }
         });
 
         exitButton.setActionCommand("Exit and Export");
-        exitButton.setFont(new java.awt.Font("Comic Sans MS", 0, 12)); // NOI18N
+        exitButton.setFont(new Font("Comic Sans MS", 0, 12)); // NOI18N
         exitButton.setLabel("Exit and Export");
-        exitButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        exitButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent evt) {
                 exitButtonActionPerformed(evt);
             }
         });
@@ -246,15 +252,15 @@ public class Gui extends javax.swing.JFrame {
         maxThinkingFIeld1.setViewportView(weightThinkingTextField);
 
         courseAverageButton.setLabel("Course Average");
-        courseAverageButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        courseAverageButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent evt) {
                 courseAverageButtonActionPerformed(evt);
             }
         });
 
         displayMarkButton.setLabel("Display All Marks");
-        displayMarkButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        displayMarkButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent evt) {
                 displayMarkButtonActionPerformed(evt);
             }
         });
@@ -278,197 +284,197 @@ public class Gui extends javax.swing.JFrame {
 
         jLabel20.setText("Weight Culminating");
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
+        GroupLayout layout = new GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            layout.createParallelGroup(GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createParallelGroup(GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jLabel1)
                         .addGap(293, 293, 293)
-                        .addComponent(exitButton, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(exitButton, GroupLayout.PREFERRED_SIZE, 97, GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 515, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(jScrollPane1, GroupLayout.PREFERRED_SIZE, 515, GroupLayout.PREFERRED_SIZE)
+                        .addGroup(layout.createParallelGroup(GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(12, 12, 12)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGroup(layout.createParallelGroup(GroupLayout.Alignment.LEADING)
                                     .addGroup(layout.createSequentialGroup()
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addGroup(layout.createParallelGroup(GroupLayout.Alignment.LEADING)
                                             .addGroup(layout.createSequentialGroup()
                                                 .addGap(6, 6, 6)
-                                                .addComponent(weightCommunicationField, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                .addComponent(maxCommunicationField1, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                .addComponent(maxThinkingFIeld1, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                                .addComponent(weightCommunicationField, GroupLayout.PREFERRED_SIZE, 111, GroupLayout.PREFERRED_SIZE)
+                                                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+                                                .addComponent(maxCommunicationField1, GroupLayout.PREFERRED_SIZE, 111, GroupLayout.PREFERRED_SIZE)
+                                                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+                                                .addComponent(maxThinkingFIeld1, GroupLayout.PREFERRED_SIZE, 109, GroupLayout.PREFERRED_SIZE))
                                             .addGroup(layout.createSequentialGroup()
                                                 .addComponent(jLabel15)
-                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
                                                 .addComponent(jLabel17)
-                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                                .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
                                                 .addComponent(jLabel14)))
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(maxKnowleadgeField1, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+                                        .addGroup(layout.createParallelGroup(GroupLayout.Alignment.LEADING)
+                                            .addComponent(maxKnowleadgeField1, GroupLayout.PREFERRED_SIZE, 120, GroupLayout.PREFERRED_SIZE)
                                             .addComponent(jLabel16)))
                                     .addGroup(layout.createSequentialGroup()
                                         .addGap(8, 8, 8)
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addGroup(layout.createParallelGroup(GroupLayout.Alignment.LEADING)
+                                            .addGroup(layout.createParallelGroup(GroupLayout.Alignment.LEADING)
                                                 .addGroup(layout.createSequentialGroup()
-                                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                        .addComponent(courseCodeField, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                                        .addComponent(nameField, javax.swing.GroupLayout.DEFAULT_SIZE, 111, Short.MAX_VALUE)
-                                                        .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                    .addComponent(jScrollPane12, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                    .addComponent(givenApplicationField, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                            .addComponent(jScrollPane11, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(maxCommunicationField, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                    .addGroup(layout.createParallelGroup(GroupLayout.Alignment.LEADING)
+                                                        .addComponent(courseCodeField, GroupLayout.PREFERRED_SIZE, 111, GroupLayout.PREFERRED_SIZE)
+                                                        .addComponent(jLabel2, GroupLayout.PREFERRED_SIZE, 76, GroupLayout.PREFERRED_SIZE))
+                                                    .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+                                                    .addGroup(layout.createParallelGroup(GroupLayout.Alignment.LEADING, false)
+                                                        .addComponent(nameField, GroupLayout.DEFAULT_SIZE, 111, Short.MAX_VALUE)
+                                                        .addComponent(jLabel3, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                                                .addGroup(GroupLayout.Alignment.TRAILING, layout.createParallelGroup(GroupLayout.Alignment.LEADING)
+                                                    .addComponent(jScrollPane12, GroupLayout.PREFERRED_SIZE, 111, GroupLayout.PREFERRED_SIZE)
+                                                    .addComponent(givenApplicationField, GroupLayout.PREFERRED_SIZE, 111, GroupLayout.PREFERRED_SIZE)))
+                                            .addComponent(jScrollPane11, GroupLayout.PREFERRED_SIZE, 111, GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(maxCommunicationField, GroupLayout.PREFERRED_SIZE, 111, GroupLayout.PREFERRED_SIZE)
                                             .addGroup(layout.createSequentialGroup()
                                                 .addComponent(jLabel10)
-                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                .addComponent(jLabel13, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+                                                .addComponent(jLabel13, GroupLayout.PREFERRED_SIZE, 92, GroupLayout.PREFERRED_SIZE)))
+                                        .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+                                        .addGroup(layout.createParallelGroup(GroupLayout.Alignment.LEADING)
                                             .addGroup(layout.createSequentialGroup()
-                                                .addComponent(givenThinkingField, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                .addComponent(givenKnowleadgeField, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                                .addComponent(givenThinkingField, GroupLayout.PREFERRED_SIZE, 111, GroupLayout.PREFERRED_SIZE)
+                                                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+                                                .addComponent(givenKnowleadgeField, GroupLayout.PREFERRED_SIZE, 111, GroupLayout.PREFERRED_SIZE))
                                             .addGroup(layout.createSequentialGroup()
-                                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                    .addComponent(maxThinkingFIeld, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                    .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                .addGroup(layout.createParallelGroup(GroupLayout.Alignment.LEADING)
+                                                    .addComponent(maxThinkingFIeld, GroupLayout.PREFERRED_SIZE, 111, GroupLayout.PREFERRED_SIZE)
+                                                    .addComponent(jLabel9, GroupLayout.PREFERRED_SIZE, 76, GroupLayout.PREFERRED_SIZE))
+                                                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+                                                .addGroup(layout.createParallelGroup(GroupLayout.Alignment.LEADING)
                                                     .addComponent(jLabel11)
-                                                    .addComponent(maxKnowleadgeField, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                                                    .addComponent(maxKnowleadgeField, GroupLayout.PREFERRED_SIZE, 111, GroupLayout.PREFERRED_SIZE)))))
                                     .addGroup(layout.createSequentialGroup()
                                         .addComponent(jLabel12)
                                         .addGap(9, 9, 9)
-                                        .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                        .addComponent(jLabel8, GroupLayout.PREFERRED_SIZE, 102, GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(jLabel7, GroupLayout.PREFERRED_SIZE, 111, GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(jLabel5, GroupLayout.PREFERRED_SIZE, 111, GroupLayout.PREFERRED_SIZE)))
                                 .addGap(18, 18, 18)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGroup(layout.createParallelGroup(GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel18)
-                                    .addComponent(maxCommunicationField2, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(maxCommunicationField2, GroupLayout.PREFERRED_SIZE, 111, GroupLayout.PREFERRED_SIZE)
                                     .addComponent(jLabel20)
-                                    .addComponent(weightCulminatingField, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(weightCulminatingField, GroupLayout.PREFERRED_SIZE, 114, GroupLayout.PREFERRED_SIZE)
                                     .addComponent(jLabel19)
-                                    .addComponent(weightCommunicationField1, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                    .addComponent(weightCommunicationField1, GroupLayout.PREFERRED_SIZE, 111, GroupLayout.PREFERRED_SIZE)))
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(21, 21, 21)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGroup(layout.createParallelGroup(GroupLayout.Alignment.LEADING)
                                     .addGroup(layout.createSequentialGroup()
-                                        .addComponent(addMarkButton, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(searchMarkButton, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(courseAverageButton, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(addMarkButton, GroupLayout.PREFERRED_SIZE, 111, GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(searchMarkButton, GroupLayout.PREFERRED_SIZE, 111, GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(courseAverageButton, GroupLayout.PREFERRED_SIZE, 111, GroupLayout.PREFERRED_SIZE)
                                         .addGap(15, 15, 15)
-                                        .addComponent(top6AverageButton, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addComponent(top6AverageButton, GroupLayout.PREFERRED_SIZE, 111, GroupLayout.PREFERRED_SIZE))
                                     .addGroup(layout.createSequentialGroup()
-                                        .addComponent(removeMarkButton, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(displayMarkButton, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(overallAverageButton, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                                        .addComponent(removeMarkButton, GroupLayout.PREFERRED_SIZE, 111, GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(displayMarkButton, GroupLayout.PREFERRED_SIZE, 111, GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(overallAverageButton, GroupLayout.PREFERRED_SIZE, 111, GroupLayout.PREFERRED_SIZE)))))
                         .addGap(14, 14, 14)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            layout.createParallelGroup(GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createParallelGroup(GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel1)
-                    .addComponent(exitButton, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(exitButton, GroupLayout.PREFERRED_SIZE, 47, GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane1, GroupLayout.Alignment.TRAILING)
+                    .addGroup(GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(GroupLayout.Alignment.TRAILING)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jLabel3, GroupLayout.PREFERRED_SIZE, 22, GroupLayout.PREFERRED_SIZE)
                                 .addGap(3, 3, 3)
-                                .addComponent(nameField, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(nameField, GroupLayout.PREFERRED_SIZE, 39, GroupLayout.PREFERRED_SIZE))
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jLabel2, GroupLayout.PREFERRED_SIZE, 22, GroupLayout.PREFERRED_SIZE)
                                 .addGap(3, 3, 3)
-                                .addComponent(courseCodeField, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addComponent(courseCodeField, GroupLayout.PREFERRED_SIZE, 39, GroupLayout.PREFERRED_SIZE)))
                         .addGap(12, 12, 12)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addGroup(layout.createParallelGroup(GroupLayout.Alignment.TRAILING)
                             .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel18, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(givenKnowleadgeField, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(givenThinkingField, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addGroup(layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
+                                    .addComponent(jLabel5, GroupLayout.PREFERRED_SIZE, 22, GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel7, GroupLayout.PREFERRED_SIZE, 22, GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel18, GroupLayout.PREFERRED_SIZE, 22, GroupLayout.PREFERRED_SIZE))
+                                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(layout.createParallelGroup(GroupLayout.Alignment.TRAILING)
+                                    .addComponent(givenKnowleadgeField, GroupLayout.PREFERRED_SIZE, 39, GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(givenThinkingField, GroupLayout.PREFERRED_SIZE, 39, GroupLayout.PREFERRED_SIZE)))
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jLabel12, GroupLayout.PREFERRED_SIZE, 22, GroupLayout.PREFERRED_SIZE)
                                 .addGap(3, 3, 3)
-                                .addComponent(jScrollPane11, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(jScrollPane11, GroupLayout.PREFERRED_SIZE, 39, GroupLayout.PREFERRED_SIZE))
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jLabel8, GroupLayout.PREFERRED_SIZE, 22, GroupLayout.PREFERRED_SIZE)
                                 .addGap(3, 3, 3)
-                                .addComponent(givenApplicationField, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(weightCommunicationField1, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(givenApplicationField, GroupLayout.PREFERRED_SIZE, 39, GroupLayout.PREFERRED_SIZE))
+                            .addComponent(weightCommunicationField1, GroupLayout.PREFERRED_SIZE, 39, GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addGroup(layout.createParallelGroup(GroupLayout.Alignment.TRAILING)
                             .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel13, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel19, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGroup(layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
+                                    .addComponent(jLabel10, GroupLayout.PREFERRED_SIZE, 22, GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel13, GroupLayout.PREFERRED_SIZE, 22, GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel9, GroupLayout.PREFERRED_SIZE, 22, GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel11, GroupLayout.PREFERRED_SIZE, 22, GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel19, GroupLayout.PREFERRED_SIZE, 22, GroupLayout.PREFERRED_SIZE))
                                 .addGap(3, 3, 3)
-                                .addComponent(maxCommunicationField, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(jScrollPane12, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(maxThinkingFIeld, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(maxKnowleadgeField, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(maxCommunicationField2, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(maxKnowleadgeField1, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(maxCommunicationField, GroupLayout.PREFERRED_SIZE, 39, GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jScrollPane12, GroupLayout.PREFERRED_SIZE, 39, GroupLayout.PREFERRED_SIZE)
+                            .addComponent(maxThinkingFIeld, GroupLayout.PREFERRED_SIZE, 39, GroupLayout.PREFERRED_SIZE)
+                            .addComponent(maxKnowleadgeField, GroupLayout.PREFERRED_SIZE, 39, GroupLayout.PREFERRED_SIZE)
+                            .addComponent(maxCommunicationField2, GroupLayout.PREFERRED_SIZE, 39, GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(GroupLayout.Alignment.TRAILING)
+                            .addComponent(maxKnowleadgeField1, GroupLayout.PREFERRED_SIZE, 39, GroupLayout.PREFERRED_SIZE)
                             .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(jLabel15, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel17, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel14, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel16, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel20, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(weightCommunicationField, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(maxThinkingFIeld1, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(maxCommunicationField1, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addComponent(weightCulminatingField, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 95, Short.MAX_VALUE)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(searchMarkButton, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(addMarkButton, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(courseAverageButton, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(top6AverageButton, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(overallAverageButton, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(removeMarkButton, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(displayMarkButton, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addGroup(layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
+                                    .addComponent(jLabel15, GroupLayout.PREFERRED_SIZE, 22, GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel17, GroupLayout.PREFERRED_SIZE, 22, GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel14, GroupLayout.PREFERRED_SIZE, 22, GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel16, GroupLayout.PREFERRED_SIZE, 22, GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel20, GroupLayout.PREFERRED_SIZE, 22, GroupLayout.PREFERRED_SIZE))
+                                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(layout.createParallelGroup(GroupLayout.Alignment.TRAILING)
+                                    .addComponent(weightCommunicationField, GroupLayout.PREFERRED_SIZE, 39, GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(maxThinkingFIeld1, GroupLayout.PREFERRED_SIZE, 39, GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(maxCommunicationField1, GroupLayout.PREFERRED_SIZE, 39, GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(weightCulminatingField, GroupLayout.PREFERRED_SIZE, 39, GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, 95, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(GroupLayout.Alignment.LEADING)
+                            .addComponent(searchMarkButton, GroupLayout.PREFERRED_SIZE, 52, GroupLayout.PREFERRED_SIZE)
+                            .addComponent(addMarkButton, GroupLayout.PREFERRED_SIZE, 52, GroupLayout.PREFERRED_SIZE)
+                            .addComponent(courseAverageButton, GroupLayout.PREFERRED_SIZE, 52, GroupLayout.PREFERRED_SIZE)
+                            .addComponent(top6AverageButton, GroupLayout.PREFERRED_SIZE, 52, GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(GroupLayout.Alignment.LEADING)
+                            .addComponent(overallAverageButton, GroupLayout.Alignment.TRAILING, GroupLayout.PREFERRED_SIZE, 52, GroupLayout.PREFERRED_SIZE)
+                            .addGroup(GroupLayout.Alignment.TRAILING, layout.createParallelGroup(GroupLayout.Alignment.LEADING)
+                                .addComponent(removeMarkButton, GroupLayout.PREFERRED_SIZE, 52, GroupLayout.PREFERRED_SIZE)
+                                .addComponent(displayMarkButton, GroupLayout.PREFERRED_SIZE, 52, GroupLayout.PREFERRED_SIZE)))
                         .addGap(67, 67, 67))))
         );
 
@@ -493,21 +499,46 @@ public class Gui extends javax.swing.JFrame {
             String courseCode = item.getCourseCode();
             if (course.equals(courseCode)) {
                 found = true;
-                // Accumulate the weighted marks and weights 
-		dailyMark = dailyMark + item.getKMark() / item.getKMaxMark() * item.getKWeight();
-		dailyMark = dailyMark + item.getTMark() / item.getTMaxMark() * item.getTWeight();
-		dailyMark = dailyMark + item.getCMark() / item.getCMaxMark() * item.getCWeight();
-		dailyMark = dailyMark + item.getAMark() / item.getAMaxMark() * item.getAWeight();
-                dailyWeight = dailyWeight + item.getKWeight() + item.getTWeight() + item.getCWeight() + item.getAWeight();
-		culminatingMark = culminatingMark + item.getCulminatingMark() / item.getCulminatingMaxMark() * item.getCulminatingWeight();
-                culminatingWeight = culminatingWeight + item.getCulminatingWeight();
+                // Accumulate the weighted marks and weights
+                // Accumulate the weighted marks and weights
+        if(item.getKMaxMark() > 0){
+            dailyMark = dailyMark + item.getKMark() / item.getKMaxMark() * item.getKWeight();
+        }
+		if(item.getTMaxMark() > 0){
+            dailyMark = dailyMark + item.getTMark() / item.getTMaxMark() * item.getTWeight();
+        }
+		if(item.getCMaxMark() > 0){
+            dailyMark = dailyMark + item.getCMark() / item.getCMaxMark() * item.getCWeight();
+        }
+		if(item.getAMaxMark() > 0){
+            dailyMark = dailyMark + item.getAMark() / item.getAMaxMark() * item.getAWeight();
+        }
+        dailyWeight = dailyWeight + item.getKWeight() + item.getTWeight() + item.getCWeight() + item.getAWeight();
+        if(item.getCulminatingMaxMark() > 0){
+            culminatingMark = culminatingMark + item.getCulminatingMark() / item.getCulminatingMaxMark() * item.getCulminatingWeight();
+            culminatingWeight = culminatingWeight + item.getCulminatingWeight();
+        }
+		
 		}
 	}
         
         // Calculate the averages if the weights are valid
-        double dailyAverage = dailyMark / dailyWeight * 100;
-        double culminatingAverage = culminatingMark / culminatingWeight * 100;
-        double courseAverage = dailyAverage * 0.7 + culminatingAverage * 0.3;
+
+
+        double courseAverage = 0;
+        double dailyAverage = 0;
+        double culminatingAverage = 0;
+        
+        if(dailyWeight > 0){
+            dailyAverage = dailyMark / dailyWeight * 100; 
+        }
+        if(culminatingWeight>0){
+            culminatingAverage = culminatingMark / culminatingWeight * 100;  
+        }
+        if(culminatingAverage>0){
+             courseAverage = dailyAverage * 0.7 + culminatingAverage * 0.3;
+        }
+        
         
         // Display a message if the course was not found
         if (!found) {
@@ -571,7 +602,7 @@ public class Gui extends javax.swing.JFrame {
         display.setText(text);
     }
 
-    private void addMarkButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addMarkButtonActionPerformed
+    private void addMarkButtonActionPerformed(ActionEvent evt) {//GEN-FIRST:event_addMarkButtonActionPerformed
         // TODO add your handling code here:
         // Report error and return if any field is empty
         if (courseCodeTextField.getText().isEmpty() || nameTextField.getText().isEmpty() || givenKnowledgeTextField.getText().isEmpty() || maxKnowledgeTextField.getText().isEmpty() 
@@ -669,17 +700,17 @@ public class Gui extends javax.swing.JFrame {
 	}
     }//GEN-LAST:event_addMarkButtonActionPerformed
 
-    private void exitButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_exitButtonActionPerformed
+    private void exitButtonActionPerformed(ActionEvent evt) {//GEN-FIRST:event_exitButtonActionPerformed
         // TODO add your handling code here:
         ExportQuestionPopup();
     }//GEN-LAST:event_exitButtonActionPerformed
 
-    private void removeMarkButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_removeMarkButtonActionPerformed
+    private void removeMarkButtonActionPerformed(ActionEvent evt) {//GEN-FIRST:event_removeMarkButtonActionPerformed
         // TODO add your handling code here:
         removeThatMark();
     }//GEN-LAST:event_removeMarkButtonActionPerformed
 
-    private void overallAverageButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_overallAverageButtonActionPerformed
+    private void overallAverageButtonActionPerformed(ActionEvent evt) {//GEN-FIRST:event_overallAverageButtonActionPerformed
         // TODO add your handling code here:
         // Define variables
         ArrayList<String> allCourses = new ArrayList<>();
@@ -711,21 +742,40 @@ public class Gui extends javax.swing.JFrame {
             // Calculate marks and weights for each course
             for (Mark item : markArr){
                 if (course.equals(item.getCourseCode())) {
-		dailyMark = dailyMark + item.getKMark() / item.getKMaxMark() * item.getKWeight();
-		dailyMark = dailyMark + item.getTMark() / item.getTMaxMark() * item.getTWeight();
-		dailyMark = dailyMark + item.getCMark() / item.getCMaxMark() * item.getCWeight();
-		dailyMark = dailyMark + item.getAMark() / item.getAMaxMark() * item.getAWeight();
-                dailyWeight = dailyWeight + item.getKWeight() + item.getTWeight() + item.getCWeight() + item.getAWeight();
-                 
-		culminatingMark = culminatingMark + item.getCulminatingMark() / item.getCulminatingMaxMark() * item.getCulminatingWeight();
-                culminatingWeight = culminatingWeight + item.getCulminatingWeight();
+                    if(item.getKMaxMark() > 0){
+                        dailyMark = dailyMark + item.getKMark() / item.getKMaxMark() * item.getKWeight();
+                    }
+                    if(item.getTMaxMark() > 0){
+                        dailyMark = dailyMark + item.getTMark() / item.getTMaxMark() * item.getTWeight();
+                    }
+                    if(item.getCMaxMark() > 0){
+                        dailyMark = dailyMark + item.getCMark() / item.getCMaxMark() * item.getCWeight();
+                    }
+                    if(item.getAMaxMark() > 0){
+                        dailyMark = dailyMark + item.getAMark() / item.getAMaxMark() * item.getAWeight();
+                    }
+                    dailyWeight = dailyWeight + item.getKWeight() + item.getTWeight() + item.getCWeight() + item.getAWeight();
+                    if(item.getCulminatingMaxMark() > 0){
+                        culminatingMark = culminatingMark + item.getCulminatingMark() / item.getCulminatingMaxMark() * item.getCulminatingWeight();
+                        culminatingWeight = culminatingWeight + item.getCulminatingWeight();
+                    }
 		}
             }
             
             // Calculate averages
-            double dailyAverage = dailyMark / dailyWeight * 100;
-            double culminatingAverage = culminatingMark / culminatingWeight * 100;
-            double courseAverage = dailyAverage * 0.7 + culminatingAverage * 0.3;
+            double courseAverage = 0;
+            double dailyAverage = 0;
+            double culminatingAverage = 0;
+
+            if(dailyWeight > 0){
+                dailyAverage = dailyMark / dailyWeight * 100;
+            }
+            if(culminatingWeight>0){
+                culminatingAverage = culminatingMark / culminatingWeight * 100;
+            }
+            if(culminatingAverage>0){
+                courseAverage = dailyAverage * 0.7 + culminatingAverage * 0.3;
+            }
             
             // Check for zero weights and report errors, add available averages into the array list
             if (dailyWeight <= 0 || culminatingWeight <= 0) {
@@ -764,12 +814,12 @@ public class Gui extends javax.swing.JFrame {
         display.setText(text);
     }//GEN-LAST:event_overallAverageButtonActionPerformed
 
-    private void searchMarkButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchMarkButtonActionPerformed
+    private void searchMarkButtonActionPerformed(ActionEvent evt) {//GEN-FIRST:event_searchMarkButtonActionPerformed
         // TODO add your handling code here:
         markFinder();
     }//GEN-LAST:event_searchMarkButtonActionPerformed
 
-    private void top6AverageButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_top6AverageButtonActionPerformed
+    private void top6AverageButtonActionPerformed(ActionEvent evt) {//GEN-FIRST:event_top6AverageButtonActionPerformed
         // TODO add your handling code here:
         // Define some variables and start two new empty array lists 
         topCourses = new ArrayList<>();
@@ -813,9 +863,20 @@ public class Gui extends javax.swing.JFrame {
             }
             
             // Calculate averages
-            double dailyAverage = dailyMark / dailyWeight * 100;
-            double culminatingAverage = culminatingMark / culminatingWeight * 100;
-            double courseAverage = dailyAverage * 0.7 + culminatingAverage * 0.3;
+            double courseAverage = 0;
+            double dailyAverage = 0;
+            double culminatingAverage = 0;
+
+            if(dailyWeight > 0){
+                dailyAverage = dailyMark / dailyWeight * 100;
+            }
+            if(culminatingWeight>0){
+                culminatingAverage = culminatingMark / culminatingWeight * 100;
+            }
+            if(culminatingAverage>0){
+                courseAverage = dailyAverage * 0.7 + culminatingAverage * 0.3;
+            }
+
             
             // Check for zero weights and report errors, add available averages into the array list
             if (dailyWeight <= 0 || culminatingWeight <= 0) {
@@ -965,25 +1026,25 @@ public class Gui extends javax.swing.JFrame {
          * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
          */
         try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+            for (UIManager.LookAndFeelInfo info : UIManager.getInstalledLookAndFeels()) {
                 if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
+                    UIManager.setLookAndFeel(info.getClassName());
                     break;
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Gui.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            Logger.getLogger(Gui.class.getName()).log(Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Gui.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            Logger.getLogger(Gui.class.getName()).log(Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Gui.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Gui.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            Logger.getLogger(Gui.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (UnsupportedLookAndFeelException ex) {
+            Logger.getLogger(Gui.class.getName()).log(Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
+        EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new Gui().setVisible(true);
             }
@@ -1213,67 +1274,67 @@ public class Gui extends javax.swing.JFrame {
 
     // When opening/changing the ui, it will change the projected static elements, which breaks the searchMark.
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private java.awt.Button addMarkButton;
-    private java.awt.Button courseAverageButton;
-    private javax.swing.JScrollPane courseCodeField;
-    protected static javax.swing.JTextArea courseCodeTextField;
-    protected static javax.swing.JTextArea display;
-    private java.awt.Button displayMarkButton;
-    private java.awt.Button exitButton;
-    private javax.swing.JScrollPane givenApplicationField;
-    private javax.swing.JTextArea givenApplicationTextField;
-    private javax.swing.JTextArea givenCommunicationTextField;
-    private javax.swing.JTextArea givenCulminatingTextField;
-    private javax.swing.JScrollPane givenKnowleadgeField;
-    private javax.swing.JTextArea givenKnowledgeTextField;
-    private javax.swing.JScrollPane givenThinkingField;
-    private javax.swing.JTextArea givenThinkingTextField;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel10;
-    private javax.swing.JLabel jLabel11;
-    private javax.swing.JLabel jLabel12;
-    private javax.swing.JLabel jLabel13;
-    private javax.swing.JLabel jLabel14;
-    private javax.swing.JLabel jLabel15;
-    private javax.swing.JLabel jLabel16;
-    private javax.swing.JLabel jLabel17;
-    private javax.swing.JLabel jLabel18;
-    private javax.swing.JLabel jLabel19;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel20;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
-    private javax.swing.JLabel jLabel9;
-    private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JScrollPane jScrollPane11;
-    private javax.swing.JScrollPane jScrollPane12;
-    private javax.swing.JTextArea maxApplicationTextField;
-    private javax.swing.JScrollPane maxCommunicationField;
-    private javax.swing.JScrollPane maxCommunicationField1;
-    private javax.swing.JScrollPane maxCommunicationField2;
-    private javax.swing.JTextArea maxCommunicationTextField;
-    private javax.swing.JTextArea maxCulminatingTextField;
-    private javax.swing.JScrollPane maxKnowleadgeField;
-    private javax.swing.JScrollPane maxKnowleadgeField1;
-    private javax.swing.JTextArea maxKnowledgeTextField;
-    private javax.swing.JScrollPane maxThinkingFIeld;
-    private javax.swing.JScrollPane maxThinkingFIeld1;
-    private javax.swing.JTextArea maxThinkingTextField;
-    private javax.swing.JScrollPane nameField;
-    protected static javax.swing.JTextArea nameTextField;
-    private java.awt.Button overallAverageButton;
-    private java.awt.Button removeMarkButton;
-    private java.awt.Button searchMarkButton;
-    private java.awt.Button top6AverageButton;
-    private javax.swing.JTextArea weightApplicationTextField;
-    private javax.swing.JScrollPane weightCommunicationField;
-    private javax.swing.JScrollPane weightCommunicationField1;
-    private javax.swing.JTextArea weightCommunicationTextField;
-    private javax.swing.JScrollPane weightCulminatingField;
-    private javax.swing.JTextArea weightCulminatingTextField;
-    private javax.swing.JTextArea weightKnowledgeTextField;
-    private javax.swing.JTextArea weightThinkingTextField;
+    private Button addMarkButton;
+    private Button courseAverageButton;
+    private JScrollPane courseCodeField;
+    protected static JTextArea courseCodeTextField;
+    protected static JTextArea display;
+    private Button displayMarkButton;
+    private Button exitButton;
+    private JScrollPane givenApplicationField;
+    private JTextArea givenApplicationTextField;
+    private JTextArea givenCommunicationTextField;
+    private JTextArea givenCulminatingTextField;
+    private JScrollPane givenKnowleadgeField;
+    private JTextArea givenKnowledgeTextField;
+    private JScrollPane givenThinkingField;
+    private JTextArea givenThinkingTextField;
+    private JLabel jLabel1;
+    private JLabel jLabel10;
+    private JLabel jLabel11;
+    private JLabel jLabel12;
+    private JLabel jLabel13;
+    private JLabel jLabel14;
+    private JLabel jLabel15;
+    private JLabel jLabel16;
+    private JLabel jLabel17;
+    private JLabel jLabel18;
+    private JLabel jLabel19;
+    private JLabel jLabel2;
+    private JLabel jLabel20;
+    private JLabel jLabel3;
+    private JLabel jLabel5;
+    private JLabel jLabel7;
+    private JLabel jLabel8;
+    private JLabel jLabel9;
+    private JScrollPane jScrollPane1;
+    private JScrollPane jScrollPane11;
+    private JScrollPane jScrollPane12;
+    private JTextArea maxApplicationTextField;
+    private JScrollPane maxCommunicationField;
+    private JScrollPane maxCommunicationField1;
+    private JScrollPane maxCommunicationField2;
+    private JTextArea maxCommunicationTextField;
+    private JTextArea maxCulminatingTextField;
+    private JScrollPane maxKnowleadgeField;
+    private JScrollPane maxKnowleadgeField1;
+    private JTextArea maxKnowledgeTextField;
+    private JScrollPane maxThinkingFIeld;
+    private JScrollPane maxThinkingFIeld1;
+    private JTextArea maxThinkingTextField;
+    private JScrollPane nameField;
+    protected static JTextArea nameTextField;
+    private Button overallAverageButton;
+    private Button removeMarkButton;
+    private Button searchMarkButton;
+    private Button top6AverageButton;
+    private JTextArea weightApplicationTextField;
+    private JScrollPane weightCommunicationField;
+    private JScrollPane weightCommunicationField1;
+    private JTextArea weightCommunicationTextField;
+    private JScrollPane weightCulminatingField;
+    private JTextArea weightCulminatingTextField;
+    private JTextArea weightKnowledgeTextField;
+    private JTextArea weightThinkingTextField;
     // End of variables declaration//GEN-END:variables
 }

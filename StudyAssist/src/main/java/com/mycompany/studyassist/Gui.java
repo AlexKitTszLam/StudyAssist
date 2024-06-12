@@ -770,10 +770,12 @@ public class Gui extends JFrame {
             if(dailyWeight > 0){
                 dailyAverage = dailyMark / dailyWeight * 100;
             }
-            if(culminatingWeight>0){
+            
+            if(culminatingWeight > 0){
                 culminatingAverage = culminatingMark / culminatingWeight * 100;
             }
-            if(culminatingAverage>0){
+            
+            if(culminatingAverage > 0){
                 courseAverage = dailyAverage * 0.7 + culminatingAverage * 0.3;
             }
             
@@ -851,14 +853,23 @@ public class Gui extends JFrame {
             // Calculate the marks and weights of each course
             for (Mark item : markArr){
                 if (course.equals(item.getCourseCode())) {
-		dailyMark = dailyMark + item.getKMark() / item.getKMaxMark() * item.getKWeight();
-		dailyMark = dailyMark + item.getTMark() / item.getTMaxMark() * item.getTWeight();
-		dailyMark = dailyMark + item.getCMark() / item.getCMaxMark() * item.getCWeight();
-		dailyMark = dailyMark + item.getAMark() / item.getAMaxMark() * item.getAWeight();
-                dailyWeight = dailyWeight + item.getKWeight() + item.getTWeight() + item.getCWeight() + item.getAWeight();
-                 
-		culminatingMark = culminatingMark + item.getCulminatingMark() / item.getCulminatingMaxMark() * item.getCulminatingWeight();
-                culminatingWeight = culminatingWeight + item.getCulminatingWeight();
+                    if(item.getKMaxMark() > 0){
+                        dailyMark = dailyMark + item.getKMark() / item.getKMaxMark() * item.getKWeight();
+                    }
+                    if(item.getTMaxMark() > 0){
+                        dailyMark = dailyMark + item.getTMark() / item.getTMaxMark() * item.getTWeight();
+                    }
+                    if(item.getCMaxMark() > 0){
+                        dailyMark = dailyMark + item.getCMark() / item.getCMaxMark() * item.getCWeight();
+                    }
+                    if(item.getAMaxMark() > 0){
+                        dailyMark = dailyMark + item.getAMark() / item.getAMaxMark() * item.getAWeight();
+                    }
+                    dailyWeight = dailyWeight + item.getKWeight() + item.getTWeight() + item.getCWeight() + item.getAWeight();
+                    if(item.getCulminatingMaxMark() > 0){
+                        culminatingMark = culminatingMark + item.getCulminatingMark() / item.getCulminatingMaxMark() * item.getCulminatingWeight();
+                        culminatingWeight = culminatingWeight + item.getCulminatingWeight();
+                    }
 		}
             }
             
@@ -870,13 +881,12 @@ public class Gui extends JFrame {
             if(dailyWeight > 0){
                 dailyAverage = dailyMark / dailyWeight * 100;
             }
-            if(culminatingWeight>0){
+            
+            if(culminatingWeight > 0){
                 culminatingAverage = culminatingMark / culminatingWeight * 100;
             }
-            if(culminatingAverage>0){
-                courseAverage = dailyAverage * 0.7 + culminatingAverage * 0.3;
-            }
-
+            
+            courseAverage = dailyAverage * 0.7 + culminatingAverage * 0.3;
             
             // Check for zero weights and report errors, add available averages into the array list
             if (dailyWeight <= 0 || culminatingWeight <= 0) {

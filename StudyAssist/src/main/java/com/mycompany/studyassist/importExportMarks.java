@@ -9,16 +9,8 @@ import static com.mycompany.studyassist.Gui.markArr;
 
 public class importExportMarks {
 
-    //it's a reader.
-    static BufferedReader reader;
-    static {
-        try {
-            String file = createStorageFolder();
-            reader = new BufferedReader(new FileReader(file+"/marks.txt"));
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
-    }
+
+
 
      public static String createStorageFolder(){ //looks for if user has a file for marks.txt, and if not creates one
          System.out.println(System.getProperty("user.home"));
@@ -65,6 +57,15 @@ public class importExportMarks {
          //e
          String addedMark;
          System.out.println("arrayAdder Started");
+         BufferedReader reader;
+         {
+             try {
+                 String file = createStorageFolder();
+                 reader = new BufferedReader(new FileReader(file+"/marks.txt"));
+             } catch (IOException e) {
+                 throw new RuntimeException(e);
+             }
+         }
          do{
              addedMark = reader.readLine();
              System.out.println(addedMark);

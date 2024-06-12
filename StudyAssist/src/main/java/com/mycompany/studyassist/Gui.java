@@ -886,7 +886,9 @@ public class Gui extends JFrame {
                 culminatingAverage = culminatingMark / culminatingWeight * 100;
             }
             
-            courseAverage = dailyAverage * 0.7 + culminatingAverage * 0.3;
+            if(culminatingAverage > 0){
+                courseAverage = dailyAverage * 0.7 + culminatingAverage * 0.3;
+            }
             
             // Check for zero weights and report errors, add available averages into the array list
             if (dailyWeight <= 0 || culminatingWeight <= 0) {
